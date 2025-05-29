@@ -39,6 +39,8 @@ Estas fuentes permiten analizar los factores que influyen en la *tasa de egreso 
 
 -   Cómo varía la cantidad de graduados según su edad y género.
 
+-   Cómo varía la cantidad de egresados empleados, dependiendo de la cantidad de ingresantes con o sin empleo. 
+
 ## Justificación de la elección del dataset
 
 El dataset de los "Anuarios Estadísticos" del sistema universitario es la fuente más adecuada para estudiar la evolución en diversas áreas, las causas de ello y diferencias en la tasa de egreso universitaria en Buenos Aires. Además la información es confiable porque es oficial, completa, accesible, comparable entre años, y centrada en variables directamente vinculadas al fenómeno de estudio.
