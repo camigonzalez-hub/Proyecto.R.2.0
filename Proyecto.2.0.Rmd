@@ -4,6 +4,44 @@ author: "yo"
 date: "`r Sys.Date()`"
 output: html_document
 ---
+# INTRODUCCION
+
+## Opción 1
+El trabajo se basa en el análisis de datos provenientes de dos fuentes de datos principales que recopilan y publican estadísticas del sistema universitario argentino:
+
+1  **Anuarios de Estadísticas Universitarias del Ministerio de Educación de la Nación:**
+ Publicados en el portal oficial del Ministerio de Educación de la Nación Argentina (argentina.gob.ar/educacion/universidades), estos anuarios reúnen información cuantitativa sobre las universidades públicas y privadas del país. Los datos incluyen variables como cantidad de ingresantes, reinscriptos y egresados, área disciplinar, modalidad, género y otros factores relevantes. Esta fuente es una herramienta clave para el análisis y la planificación de políticas educativas a nivel superior.
+
+
+2  **Encuesta sobre Condiciones de Ingreso a la Universidad (ECIU**):
+  Se utiliza una base de datos derivada de la ECIU, difundida a través de una hoja de cálculo compartida públicamente (Google Sheets). Esta encuesta recopila información cualitativa y cuantitativa sobre los estudiantes al momento de ingresar a la universidad, incluyendo variables como si trabajan, si tienen personas a cargo, el nivel educativo de los padres, entre otras dimensiones socioeconómicas y demográficas. Esta información resulta útil para explorar posibles factores asociados a la retención y egreso de los estudiantes.
+
+
+Ambas fuentes son de gran relevancia institucional y social, ya que permiten conocer en profundidad la dinámica del sistema universitario argentino. En particular, su análisis contribuye a comprender los **factores que inciden en la tasa de egreso universitaria**, temática central de este trabajo.
+
+## Opción 2 (muy breve)
+
+Este trabajo utiliza datos del **Ministerio de Educación de la Nación Argentina**, extraídos de los Anuarios de Estadísticas Universitarias, y de una base complementaria proveniente de la **Encuesta sobre Condiciones de Ingreso a la Universidad (ECIU)**.
+Los datasets incluyen información sobre **ingresantes, reinscriptos y egresados** en universidades públicas y privadas del país, desagregada por *carrera, área disciplinar, género, edad, modalidad de estudio y situación laboral*.
+Estas fuentes permiten analizar los factores que influyen en la *tasa de egreso universitaria*, como el tipo de institución, la disciplina académica, y las condiciones socioeconómicas de los estudiantes
+
+## Definición de los objetivos del analisís
+
+#### La *problemática* que hemos elegido para el presente trabajo se basa en los factores que hacen que haya menor o mayor tasa de egresados en las universidades de Buenos Aires. En base a esta problemática y a partir de los data sets seleccionados y a su respectivo análisis, hemos elegido los siguientes factores a analizar:
+
+-   Cuál es la diferencia en cantidad de graduados en instituciones públicas o privadas (tanto a nivel general y en carreras específicas.
+
+-   Cómo varía la cantidad de egresados s/ área disciplinar (Área de ingeniería tiene más egresados que en otras áreas). (Gráfico de torta o barras: eje x: área disciplinar, eje y: cantidad de egresados)
+
+-   Carreras que tienen menor/mayor cantidad de egresados. (Abogacía, contador público, enfermería).
+
+-   Carreras con mayor y menor retención estudiantil (Con mayor egresados/retención son abogacía, contador público y enfermería; con menor retención (más cantidad de ingresantes pero menor cantidad de egresados).
+
+-   Cómo varía la cantidad de graduados según su edad y género.
+
+## Justificación de la elección del dataset
+
+El dataset de los "Anuarios Estadísticos" del sistema universitario es la fuente más adecuada para estudiar la evolución en diversas áreas, las causas de ello y diferencias en la tasa de egreso universitaria en Buenos Aires. Además la información es confiable porque es oficial, completa, accesible, comparable entre años, y centrada en variables directamente vinculadas al fenómeno de estudio.
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
