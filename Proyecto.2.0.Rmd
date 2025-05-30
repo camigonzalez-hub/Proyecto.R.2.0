@@ -41,6 +41,36 @@ Estas fuentes permiten analizar los factores que influyen en la *tasa de egreso 
 
 -   Cómo varía la cantidad de egresados empleados, dependiendo de la cantidad de ingresantes con o sin empleo. 
 
+##Análisis exploratorio 
+
+-¿Qué carreras tienen mayor y menor cantidad de egresados? 
+
+-¿Cómo varía la cantidad de egresados por área disciplinar?
+
+-¿Existen diferencias significativas en la cantidad de egresados
+entre instituciones estatales y privadas en la misma carrera?
+
+-Cómo cambió el número total de egresados entre 2020, 2021, 2023?
+
+-¿Crecieron más los egresados en universidades estatales o privadas?
+
+-Qué año tiene mayor cantidad de reinscriptos?
+
+-¿Existe relación entre duración promedio y tasa de egreso?
+
+-¿La relación alumno/docente influye en la tasa de egreso?
+
+-¿Qué modalidad tiene mayor cantidad de ingresantes/graduados? 
+
+-¿Cómo cambió a lo largo del tiempo la modalidad elegida y su cantidad de graduados? 
+
+-Qué género tiene mayor cantidad de graduados, son más hombres o mujeres? 
+
+-Qué rango de edad tiene más egresados?
+
+-Cómo varía la cantidad que inscriptos que trabajan en universidades privadas y públicas? Puede esto afectar la tasa de egreso en cada una?
+
+
 ## Justificación de la elección del dataset
 
 El dataset de los "Anuarios Estadísticos" del sistema universitario es la fuente más adecuada para estudiar la evolución en diversas áreas, las causas de ello y diferencias en la tasa de egreso universitaria en Buenos Aires. Además la información es confiable porque es oficial, completa, accesible, comparable entre años, y centrada en variables directamente vinculadas al fenómeno de estudio.
