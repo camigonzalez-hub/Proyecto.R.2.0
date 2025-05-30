@@ -1,10 +1,15 @@
 ---
-title: "Se ven los cambios?"
-author: "yo"
-date: "`r Sys.Date()`"
-output: html_document
+title:  "<u> Investigacion sobre las universidades </u>"
+
+author: "INTEGRANTES: Camila Gonzalez, Luciana Parallela
+Camila Rondon, Mauri, Lucas Colosimo"
+
+date: "**Recolección De Datos**"
+
+output: 
+  html_document: default
 ---
-# INTRODUCCION
+# INTRODUCCIóN
 
 ## Opción 1
 El trabajo se basa en el análisis de datos provenientes de dos fuentes de datos principales que recopilan y publican estadísticas del sistema universitario argentino:
@@ -41,63 +46,40 @@ Estas fuentes permiten analizar los factores que influyen en la *tasa de egreso 
 
 -   Cómo varía la cantidad de egresados empleados, dependiendo de la cantidad de ingresantes con o sin empleo. 
 
-##Análisis exploratorio 
+## Análisis exploratorio 
 
--¿Qué carreras tienen mayor y menor cantidad de egresados? 
+- ¿Qué carreras tienen mayor y menor cantidad de egresados? 
 
--¿Cómo varía la cantidad de egresados por área disciplinar?
+- ¿Cómo varía la cantidad de egresados por área disciplinar?
 
--¿Existen diferencias significativas en la cantidad de egresados
+- ¿Existen diferencias significativas en la cantidad de egresados
 entre instituciones estatales y privadas en la misma carrera?
 
--Cómo cambió el número total de egresados entre 2020, 2021, 2023?
+- Cómo cambió el número total de egresados entre 2020, 2021, 2023?
 
--¿Crecieron más los egresados en universidades estatales o privadas?
+- ¿Crecieron más los egresados en universidades estatales o privadas?
 
--Qué año tiene mayor cantidad de reinscriptos?
+- ¿Qué año tiene mayor cantidad de reinscriptos?
 
--¿Existe relación entre duración promedio y tasa de egreso?
+- ¿Existe relación entre duración promedio y tasa de egreso?
 
--¿La relación alumno/docente influye en la tasa de egreso?
+- ¿La relación alumno/docente influye en la tasa de egreso?
 
--¿Qué modalidad tiene mayor cantidad de ingresantes/graduados? 
+- ¿Qué modalidad tiene mayor cantidad de ingresantes/graduados? 
 
--¿Cómo cambió a lo largo del tiempo la modalidad elegida y su cantidad de graduados? 
+- ¿Cómo cambió a lo largo del tiempo la modalidad elegida y su cantidad de graduados? 
 
--Qué género tiene mayor cantidad de graduados, son más hombres o mujeres? 
+- ¿Qué género tiene mayor cantidad de graduados, son más hombres o mujeres? 
 
--Qué rango de edad tiene más egresados?
+- ¿Qué rango de edad tiene más egresados?
 
--Cómo varía la cantidad que inscriptos que trabajan en universidades privadas y públicas? Puede esto afectar la tasa de egreso en cada una?
+- ¿Cómo varía la cantidad que inscriptos que trabajan en universidades privadas y públicas? Puede esto afectar la tasa de egreso en cada una?
 
 
 ## Justificación de la elección del dataset
 
 El dataset de los "Anuarios Estadísticos" del sistema universitario es la fuente más adecuada para estudiar la evolución en diversas áreas, las causas de ello y diferencias en la tasa de egreso universitaria en Buenos Aires. Además la información es confiable porque es oficial, completa, accesible, comparable entre años, y centrada en variables directamente vinculadas al fenómeno de estudio.
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
 ```{r}
 # CUAL ES LA DIFERENCIA ENTRE CANTIDAD DE GRADUADOS EN UNIVERSIDADES PUBLICAS Y PRIVADAS - CAMI CON EL DE CHEQUEADO
@@ -107,8 +89,8 @@ library(tidyverse)
 total_egresados_publicas <- datos_chequeado %>%
   filter(`Año Informado` == 2010, Régimen == "Estatal") %>%
   summarise(total = sum(Egresados, na.rm = TRUE))
-install.packages("waldo")
-library(waldo)
+#install.packages("waldo")
+#library("waldo")
 
 ```
 
