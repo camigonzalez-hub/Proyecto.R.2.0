@@ -77,6 +77,8 @@ library(tidyverse)
 total_egresados_publicas <- datos_chequeado %>%
   filter(`Año Informado` == 2010, Régimen == "Estatal") %>%
   summarise(total = sum(Egresados, na.rm = TRUE))
+install.packages("waldo")
+library(waldo)
 
 ```
 
