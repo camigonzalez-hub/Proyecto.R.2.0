@@ -169,6 +169,18 @@ colors()
 
 
 ```
+```{r} 
+## AÑO QUE TIENE MAYOR CANTIDAD DE REINSCRIPTOS EN UNIVERSIDADES NACIONALES DE GESTIÓN ESTATAL: (Lu con datasets "Indicadores 2020, 21 y 23 de anuarios estadísticos")
+
+#Creo tabla con reinscriptos de universidades nacionales estatales
+
+reinscriptos_nacionales <- data.frame(
+  anio = c("2020", "2021", "2023"),
+  cantidad = c(1322958, 1458482, 1436662)
+  
+)  
+library(ggplot2) 
+
 
 #hola
 
