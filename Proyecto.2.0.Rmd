@@ -86,10 +86,52 @@ El dataset de los "Anuarios Estadísticos" del sistema universitario es la fuent
 library(readxl)
 datos_chequeado <- read_excel("Universidades - egresados.xlsx")
 library(tidyverse)
-total_egresados_publicas <- datos_chequeado %>%
-  filter(`Año Informado` == 2020, Régimen == "Estatal") %>%
-  summarise(total = sum(Egresados, na.rm = TRUE))
-head(datos_chequeado)
+
+#ESTE CUENTA LA CANTIDAD DE EGRESADOS DE UNIVERSIDADES PRIVADAS
+egresados_privadas <-  datos_chequeado %>%
+  filter(`Año Informado` == 2020,
+         `Régimen` == "Privado",
+         `Tipo Institución` == "Universidad") %>%
+   summarise(total_egresados_privadas = sum(Egresados, na.rm = TRUE)) %>%
+  pull(total_egresados_privadas)
+
+# ESTE CUENTA LA CANTIDAD DE EGRESADOS EN UNIVERSIDADES ESTATALES
+egresados_estatales <- datos_chequeado %>%
+  filter(`Año Informado` == 2020,
+         `Régimen` == "Estatal",
+         `Tipo Institución` == "Universidad") %>%
+  summarise(total_egresados_estatales = sum(Egresados, na.rm = TRUE)) %>%
+  pull(total_egresados_estatales)
+
+#install.packages("tidyverse")
+library(tidyverse)
+library(ggplot2)
+
+# GRAFICO DE BARRAS QUE COMPARA LA CANTIDAD DE EGRESADOS DE UNIVERSIDADES PUBLICAS VS PRIVADAS
+df <- data.frame(
+  Egresados_2020 = c("Egresados estatales","Egresados Privados"),
+  Cantidad = c(egresados_estatales , egresados_privadas)
+)
+
+ggplot(df, aes (x = Egresados_2020 , y = Cantidad , fill = Egresados_2020)) + 
+  geom_bar(stat = "identity") + 
+  scale_fill_manual(values = c( "lightpink","lightpink3"))
+
+#Esto nos muestra todos los colores con los que podemos trabajar
+display_colores <- function(n = 50) {
+  all_colors <- colors()
+  sample_colors <- sample(all_colors, n)
+  barplot(rep(1, n), col = sample_colors, names.arg = sample_colors, las = 2, cex.names = 0.6)
+}
+
+display_colores(30)
+
+#Los codigos de los colores
+colors()
+
+
+
+
 ```
 
 #hola
