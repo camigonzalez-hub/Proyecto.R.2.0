@@ -212,7 +212,9 @@ ggplot(reinscriptos, aes(x = Año, y = Reinscriptos, fill = Año)) +
   theme_minimal()
 ```
 
+### Cantidad de egresados de Universidades Nacionales y Provinciales. 
 
+# A partir del siguiente gráfico se hace un analisis de la cantidad de **egresados** de los **años 2021 y 2023** en Universidades tanto Nacionales como provinciales 
 
 #CANTIDAD DE EGRESADOS A NIVEL NACIONAL, CANTIDAD DE EGRESADOS A NIVEL PROVINCIAL DEL AÑO 2020 (Lu con indicadores )
 
