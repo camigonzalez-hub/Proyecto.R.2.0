@@ -260,7 +260,7 @@ egresados_2023 <- datos_2023 %>%
   group_by(año, tipo) %>%
   summarise(Egresados = sum(`Egresados (EGR)`, na.rm = TRUE), .groups = "drop")
 
-# Uno los datos
+# Uno todos los datos
 egresados_comparados <- bind_rows(egresados_2021, egresados_2023)
 
 # Creo gráfico de columnas agrupadas
