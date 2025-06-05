@@ -214,7 +214,7 @@ ggplot(reinscriptos, aes(x = Año, y = Reinscriptos, fill = Año)) +
 
 
 
-#CANTIDAD DE EGRESADOS A NIVEL NACIONAL, CANTIDAD DE EGRESADOS A NIVEL PROVINCIAL DEL AÑO 2020 (Lu con el de chequeado)
+#CANTIDAD DE EGRESADOS A NIVEL NACIONAL, CANTIDAD DE EGRESADOS A NIVEL PROVINCIAL DEL AÑO 2020 (Lu con indicadores )
 
 
 
