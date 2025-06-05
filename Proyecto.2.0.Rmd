@@ -214,12 +214,72 @@ ggplot(reinscriptos, aes(x = Año, y = Reinscriptos, fill = Año)) +
 
 ### Cantidad de egresados de Universidades Nacionales y Provinciales. 
 
-# A partir del siguiente gráfico se hace un analisis de la cantidad de **egresados** de los **años 2021 y 2023** en Universidades tanto Nacionales como provinciales 
+### A partir del siguiente gráfico se hace un analisis de la cantidad de **egresados** de los **años 2021 y 2023** en Universidades tanto Nacionales como provinciales. 
 
-#CANTIDAD DE EGRESADOS A NIVEL NACIONAL, CANTIDAD DE EGRESADOS A NIVEL PROVINCIAL DEL AÑO 2020 (Lu con indicadores )
+```{r}
+# Cargo paquetes necesarios
+library(readxl)
+library(dplyr)
+library(ggplot2)
+
+# Cargo datos desde la hoja correspondiente
+datos_2021 <- read_excel("1.2 Indicadores 2021.xlsx", sheet = "C 1.2.1a", skip = 2)
+datos_2023 <- read_excel("1.2 Indicadores 2023.xlsx", sheet = "C 1.2.1a", skip = 2)
+
+# Proceso datos de 2021
+egresados_2021 <- datos_2021 %>%
+  select(Institución, `Egresadas/os (EGR)`) %>%
+  filter(!is.na(`Egresadas/os (EGR)`)) %>%
+  mutate(
+    `Egresadas/os (EGR)` = as.numeric(gsub("[^0-9]", "", `Egresadas/os (EGR)`)),
+    tipo = case_when(
+      grepl("Nacional", Institución) ~ "Nacional",
+      grepl("Provincial", Institución) ~ "Provincial",
+      TRUE ~ NA_character_
+    ),
+    año = 2021
+  ) %>%
+  filter(!is.na(tipo)) %>%
+  group_by(año, tipo) %>%
+  summarise(Egresados = sum(`Egresadas/os (EGR)`, na.rm = TRUE), .groups = "drop")
+
+# Proceso datos de 2023
+egresados_2023 <- datos_2023 %>%
+  select(Institución, `Egresados (EGR)`) %>%
+  filter(!is.na(`Egresados (EGR)`)) %>%
+  mutate(
+    `Egresados (EGR)` = as.numeric(gsub("[^0-9]", "", `Egresados (EGR)`)),
+    tipo = case_when(
+      grepl("Nacional", Institución) ~ "Nacional",
+      grepl("Provincial", Institución) ~ "Provincial",
+      TRUE ~ NA_character_
+    ),
+    año = 2023
+  ) %>%
+  filter(!is.na(tipo)) %>%
+  group_by(año, tipo) %>%
+  summarise(Egresados = sum(`Egresados (EGR)`, na.rm = TRUE), .groups = "drop")
+
+# Uno los datos
+egresados_comparados <- bind_rows(egresados_2021, egresados_2023)
+
+# Creo gráfico de columnas agrupadas
+ggplot(egresados_comparados, aes(x = factor(año), y = Egresados, fill = tipo)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  geom_text(aes(label = Egresados), position = position_dodge(width = 0.9), vjust = -0.5) +
+  labs(
+    title = "Comparación de egresados por tipo de universidad (2021 vs 2023)",
+    x = "Año",
+    y = "Cantidad de egresados",
+    fill = "Tipo de universidad"
+  ) +
+  theme_minimal()
+```
 
 
-
+```{r ver_columnas_2023}
+# Mostrar nombres de columnas del archivo 2023
+colnames(datos_2023)
 
 #hola
 
