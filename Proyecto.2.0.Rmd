@@ -139,7 +139,7 @@ print(datosxcarrera)
 # Graficar
 ggplot(datosxcarrera, aes(x = reorder(Carrrera, -graduadosxcarrera), 
                           y = graduadosxcarrera, fill = Carrrera)) +
-  geom_bar(stat = "identity") +
+  geom_bar(stat = "identity", width = 0.7) +
   geom_text(aes(label = graduadosxcarrera), 
             vjust = -0.5, 
             color = "black", 
