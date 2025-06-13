@@ -81,7 +81,8 @@ entre instituciones estatales y privadas en la misma carrera?
 El dataset de los "Anuarios Estadísticos" del sistema universitario es la fuente más adecuada para estudiar la evolución en diversas áreas, las causas de ello y diferencias en la tasa de egreso universitaria en Buenos Aires. Además la información es confiable porque es oficial, completa, accesible, comparable entre años, y centrada en variables directamente vinculadas al fenómeno de estudio.
 
 
-```{r}
+ 
+```{r Camila_gonzalez , warning=FALSE , message= FALSE}
 # CUAL ES LA DIFERENCIA ENTRE CANTIDAD DE GRADUADOS EN UNIVERSIDADES PUBLICAS Y PRIVADAS - CAMI CON EL DE CHEQUEADO
 library(readxl)
 datos_chequeado <- read_excel("Universidades - egresados.xlsx")
@@ -151,19 +152,21 @@ ggplot(datosxcarrera, aes(x = reorder(Carrrera, -graduadosxcarrera),
        x = "Carreras") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 40, hjust = 1))
+``` 
 
-
-
+``` {r undefined, message = false, warning = false}
 # Esto nos muestra todos los colores con los que podemos trabajar
 display_colores <- function(n = 50) {
   all_colors <- colors()
   sample_colors <- sample(all_colors, n)
   barplot(rep(1, n), col = sample_colors, names.arg = sample_colors, las = 2, cex.names = 0.6)
-}
+
 display_colores(30)
 
 # Los codigos de los colores
 colors()
+``` 
+
 ``` 
 ### Reinscriptos en universidades nacionales de gestión estatal
 
