@@ -114,9 +114,19 @@ df <- data.frame(
   Cantidad = c(egresados_estatales , egresados_privadas)
 )
 
-ggplot(df, aes (x = Egresados_2020 , y = Cantidad , fill = Egresados_2020)) + 
+# GRAFICO SOBRE TOTAL DE EGRESADOS DE PRIVADAS VS PUBLICAS
+ggplot(df, aes(x = Egresados_2020, y = Cantidad, fill = Egresados_2020)) + 
   geom_bar(stat = "identity") + 
-  scale_fill_manual(values = c( "lightpink","lightpink3"))
+  scale_fill_manual(values = c("lightpink2", "lightblue3")) +
+  labs(
+    title = "Cantidad de graduados según tipo de institución",
+    y = "Cantidad",
+    x = "Egresados",
+    fill = NULL 
+  ) +
+  theme_minimal() +
+  theme(plot.title = element_text(size = 16, hjust = 0.5))
+
 
 
 #cantidad de graduados por carrera
@@ -137,7 +147,9 @@ datosxcarrera <- datos_chequeado %>%
   slice(1:10)  # Top 10 carreras
 print(datosxcarrera)
 
-# Graficar
+#GRAFICO DE CANTIDAD DE TOP CARRRERAS CON MAS GRADUADOS
+library(RColorBrewer)
+
 ggplot(datosxcarrera, aes(x = reorder(Carrrera, -graduadosxcarrera), 
                           y = graduadosxcarrera, fill = Carrrera)) +
   geom_bar(stat = "identity", width = 0.7) +
@@ -145,13 +157,16 @@ ggplot(datosxcarrera, aes(x = reorder(Carrrera, -graduadosxcarrera),
             vjust = -0.5, 
             color = "black", 
             size = 3.5) +
-  scale_fill_manual(values = c("lightpink2", "coral3", "pink4", "maroon", 
-                               "chocolate", "sienna", "purple3", "sienna4", "gray", "orchid4")) +
-  labs(title = "Graduados por carrera",
+  scale_fill_brewer(palette = "PiYG") +
+  labs(title = "TOP 10 carreras con mas graduados",
        y = "Cantidad de egresados",
-       x = "Carreras") +
+       x = "Carreras",
+       fill= NULL
+  ) +
   theme_minimal() +
-  theme(axis.text.x = element_text(angle = 40, hjust = 1))
+  theme(axis.text.x = element_text(angle = 40, hjust = 1)) +
+  theme(plot.title = element_text(size = 16, hjust = 0.5))
+
 ``` 
 
 ``` {r undefined, message = false, warning = false}
