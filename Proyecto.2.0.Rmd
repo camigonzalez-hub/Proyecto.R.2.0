@@ -169,20 +169,7 @@ ggplot(datosxcarrera, aes(x = reorder(Carrrera, -graduadosxcarrera),
 
 ``` 
 
-``` {r undefined, message = false, warning = false}
-# Esto nos muestra todos los colores con los que podemos trabajar
-display_colores <- function(n = 50) {
-  all_colors <- colors()
-  sample_colors <- sample(all_colors, n)
-  barplot(rep(1, n), col = sample_colors, names.arg = sample_colors, las = 2, cex.names = 0.6)
 
-display_colores(30)
-
-# Los codigos de los colores
-colors()
-``` 
-
-``` 
 ### Reinscriptos en universidades nacionales de gestión estatal
 
 Se analiza la cantidad de reinscriptos en universidades **nacionales de gestión estatal** en los años **2020, 2021 y 2023** a partir de los anuarios estadísticos del sistema universitario.
@@ -300,7 +287,6 @@ ggplot(egresados_comparados, aes(x = factor(año), y = Egresados, fill = tipo)) 
 colnames(datos_2023)
 
 #hola
-
 
 
 
