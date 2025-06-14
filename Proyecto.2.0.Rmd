@@ -282,12 +282,7 @@ ggplot(egresados_comparados, aes(x = factor(año), y = Egresados, fill = tipo)) 
 ```
 
 
-```{r ver_columnas_2023}
-# Mostrar nombres de columnas del archivo 2023
-colnames(datos_2023)
-
-#hola
-
+# VES ESTO?
 
 
 
