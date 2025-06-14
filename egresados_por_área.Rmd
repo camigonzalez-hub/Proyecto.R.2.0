@@ -5,6 +5,7 @@ date: "2025-06-13"
 output: html_document
 ---
 
+
 ## ¿Cómo varía la cantidad de egresados por área disciplinar?
 
 A partir del análisis de los datos entre 2020 y 2022, se observa que la cantidad de egresados varía según el área disciplinar. Algunas áreas presentan un crecimiento sostenido, mientras que otras se mantienen estables o con leves caídas.  
