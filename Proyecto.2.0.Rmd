@@ -1,10 +1,15 @@
 ---
-title: "Se ven los cambios?"
-author: "yo"
-date: "`r Sys.Date()`"
-output: html_document
+title:  "<u> Investigacion sobre las universidades </u>"
+
+author: "INTEGRANTES: Camila Gonzalez, Luciana Parallela
+Camila Rondon, Mauri, Lucas Colosimo"
+
+date: "**Recolección De Datos**"
+
+output: 
+  html_document: default
 ---
-# INTRODUCCION
+# INTRODUCCIóN
 
 ## Opción 1
 El trabajo se basa en el análisis de datos provenientes de dos fuentes de datos principales que recopilan y publican estadísticas del sistema universitario argentino:
@@ -41,76 +46,258 @@ Estas fuentes permiten analizar los factores que influyen en la *tasa de egreso 
 
 -   Cómo varía la cantidad de egresados empleados, dependiendo de la cantidad de ingresantes con o sin empleo. 
 
-##Análisis exploratorio 
+## Análisis exploratorio (algunas preguntas las vamos a sacar porque son muchas) 
 
--¿Qué carreras tienen mayor y menor cantidad de egresados? 
+- ¿Qué carreras tienen mayor y menor cantidad de egresados? 
 
--¿Cómo varía la cantidad de egresados por área disciplinar?
+- ¿Cómo varía la cantidad de egresados por área disciplinar?
 
--¿Existen diferencias significativas en la cantidad de egresados
+- ¿Existen diferencias significativas en la cantidad de egresados
 entre instituciones estatales y privadas en la misma carrera?
 
--Cómo cambió el número total de egresados entre 2020, 2021, 2023?
+- Cómo cambió el número total de egresados entre 2020, 2021, 2023?
 
--¿Crecieron más los egresados en universidades estatales o privadas?
+- ¿Crecieron más los egresados en universidades estatales o privadas?
 
--Qué año tiene mayor cantidad de reinscriptos?
+- ¿Qué año tiene mayor cantidad de reinscriptos?
 
--¿Existe relación entre duración promedio y tasa de egreso?
+- ¿Existe relación entre duración promedio y tasa de egreso?
 
--¿La relación alumno/docente influye en la tasa de egreso?
+- ¿La relación alumno/docente influye en la tasa de egreso?
 
--¿Qué modalidad tiene mayor cantidad de ingresantes/graduados? 
+- ¿Qué modalidad tiene mayor cantidad de ingresantes/graduados? 
 
--¿Cómo cambió a lo largo del tiempo la modalidad elegida y su cantidad de graduados? 
+- ¿Cómo cambió a lo largo del tiempo la modalidad elegida y su cantidad de graduados? 
 
--Qué género tiene mayor cantidad de graduados, son más hombres o mujeres? 
+- ¿Qué género tiene mayor cantidad de graduados, son más hombres o mujeres? 
 
--Qué rango de edad tiene más egresados?
+- ¿Qué rango de edad tiene más egresados?
 
--Cómo varía la cantidad que inscriptos que trabajan en universidades privadas y públicas? Puede esto afectar la tasa de egreso en cada una?
+- ¿Cómo varía la cantidad que inscriptos que trabajan en universidades privadas y públicas? Puede esto afectar la tasa de egreso en cada una?
 
 
 ## Justificación de la elección del dataset
 
 El dataset de los "Anuarios Estadísticos" del sistema universitario es la fuente más adecuada para estudiar la evolución en diversas áreas, las causas de ello y diferencias en la tasa de egreso universitaria en Buenos Aires. Además la información es confiable porque es oficial, completa, accesible, comparable entre años, y centrada en variables directamente vinculadas al fenómeno de estudio.
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
-
-```{r}
+ 
+```{r Camila_gonzalez , warning=FALSE , message= FALSE}
 # CUAL ES LA DIFERENCIA ENTRE CANTIDAD DE GRADUADOS EN UNIVERSIDADES PUBLICAS Y PRIVADAS - CAMI CON EL DE CHEQUEADO
 library(readxl)
 datos_chequeado <- read_excel("Universidades - egresados.xlsx")
 library(tidyverse)
-total_egresados_publicas <- datos_chequeado %>%
-  filter(`Año Informado` == 2010, Régimen == "Estatal") %>%
-  summarise(total = sum(Egresados, na.rm = TRUE))
-install.packages("waldo")
-library(waldo)
 
+#ESTE CUENTA LA CANTIDAD DE EGRESADOS DE UNIVERSIDADES PRIVADAS
+egresados_privadas <-  datos_chequeado %>%
+  filter(`Año Informado` == 2020,
+         `Régimen` == "Privado",
+         `Tipo Institución` == "Universidad") %>%
+   summarise(total_egresados_privadas = sum(Egresados, na.rm = TRUE)) %>%
+  pull(total_egresados_privadas)
+
+# ESTE CUENTA LA CANTIDAD DE EGRESADOS EN UNIVERSIDADES ESTATALES
+egresados_estatales <- datos_chequeado %>%
+  filter(`Año Informado` == 2020,
+         `Régimen` == "Estatal",
+         `Tipo Institución` == "Universidad") %>%
+  summarise(total_egresados_estatales = sum(Egresados, na.rm = TRUE)) %>%
+  pull(total_egresados_estatales)
+
+#install.packages("tidyverse")
+library(tidyverse)
+library(ggplot2)
+
+# GRAFICO DE BARRAS QUE COMPARA LA CANTIDAD DE EGRESADOS DE UNIVERSIDADES PUBLICAS VS PRIVADAS
+df <- data.frame(
+  Egresados_2020 = c("Egresados estatales","Egresados Privados"),
+  Cantidad = c(egresados_estatales , egresados_privadas)
+)
+
+# GRAFICO SOBRE TOTAL DE EGRESADOS DE PRIVADAS VS PUBLICAS
+ggplot(df, aes(x = Egresados_2020, y = Cantidad, fill = Egresados_2020)) + 
+  geom_bar(stat = "identity") + 
+  scale_fill_manual(values = c("lightpink2", "lightblue3")) +
+  labs(
+    title = "Cantidad de graduados según tipo de institución",
+    y = "Cantidad",
+    x = "Egresados",
+    fill = NULL 
+  ) +
+  theme_minimal() +
+  theme(plot.title = element_text(size = 16, hjust = 0.5))
+
+
+
+#cantidad de graduados por carrera
+graduadosxcarrera<- datos_chequeado %>%
+  filter(`Año Informado` == 2020,)%>%
+  arrange(desc(Egresados))%>%
+  slice(2:11)%>%
+  pull("Egresados")
+print(graduadosxcarrera)
+
+
+datosxcarrera <- datos_chequeado %>%
+  filter(`Año Informado` == 2020,
+         `Carrrera` != "Carrera No Definida") %>%
+  group_by(Carrrera) %>%
+  summarise(graduadosxcarrera = sum(Egresados)) %>%
+  arrange(desc(graduadosxcarrera)) %>%
+  slice(1:10)  # Top 10 carreras
+print(datosxcarrera)
+
+#GRAFICO DE CANTIDAD DE TOP CARRRERAS CON MAS GRADUADOS
+library(RColorBrewer)
+
+ggplot(datosxcarrera, aes(x = reorder(Carrrera, -graduadosxcarrera), 
+                          y = graduadosxcarrera, fill = Carrrera)) +
+  geom_bar(stat = "identity", width = 0.7) +
+  geom_text(aes(label = graduadosxcarrera), 
+            vjust = -0.5, 
+            color = "black", 
+            size = 3.5) +
+  scale_fill_brewer(palette = "PiYG") +
+  labs(title = "TOP 10 carreras con mas graduados",
+       y = "Cantidad de egresados",
+       x = "Carreras",
+       fill= NULL
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 40, hjust = 1)) +
+  theme(plot.title = element_text(size = 16, hjust = 0.5))
+
+``` 
+
+``` {r undefined, message = false, warning = false}
+# Esto nos muestra todos los colores con los que podemos trabajar
+display_colores <- function(n = 50) {
+  all_colors <- colors()
+  sample_colors <- sample(all_colors, n)
+  barplot(rep(1, n), col = sample_colors, names.arg = sample_colors, las = 2, cex.names = 0.6)
+
+display_colores(30)
+
+# Los codigos de los colores
+colors()
+``` 
+
+``` 
+### Reinscriptos en universidades nacionales de gestión estatal
+
+Se analiza la cantidad de reinscriptos en universidades **nacionales de gestión estatal** en los años **2020, 2021 y 2023** a partir de los anuarios estadísticos del sistema universitario.
+
+```{r luciana_reinscriptos, message=FALSE, warning=FALSE}
+
+library(readxl)
+library(dplyr)
+library(ggplot2)
+
+# Leer datos 
+data_2020 <- read_excel("1.2 Indicadores 2020.xlsx", sheet = "C 1.2.1a", skip = 2)
+data_2021 <- read_excel("1.2 Indicadores 2021.xlsx", sheet = "C 1.2.1a", skip = 2)
+data_2023 <- read_excel("1.2 Indicadores 2023.xlsx", sheet = "C 1.2.1a", skip = 2)
+
+# Filtrar y extraer los valores de reinscriptos desde la 6ta columna
+ri_2020 <- data_2020 %>%
+  filter(Institución == "Total Universidades Nacionales") %>%
+  pull(6)
+
+ri_2021 <- data_2021 %>%
+  filter(Institución == "Total Universidades Nacionales") %>%
+  pull(6)
+
+ri_2023 <- data_2023 %>%
+  filter(Institución == "Total Universidades Nacionales") %>%
+  pull(6)
+
+# Creo un data frame con los datos
+reinscriptos <- data.frame(
+  Año = c("2020", "2021", "2023"),
+  Reinscriptos = c(ri_2020, ri_2021, ri_2023)
+)
+
+# Creo el gráfico
+ggplot(reinscriptos, aes(x = Año, y = Reinscriptos, fill = Año)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = Reinscriptos), vjust = -0.5) +
+  labs(
+    title = "Cantidad de reinscriptos en universidades nacionales de gestión estatal",
+    x = "Año",
+    y = "Cantidad de reinscriptos"
+  ) +
+  scale_fill_manual(values = c("2020" = "skyblue", "2021" = "darkgreen", "2023" = "tomato")) +
+  theme_minimal()
 ```
+
+### Cantidad de egresados de Universidades Nacionales y Provinciales. 
+
+### A partir del siguiente gráfico se hace un analisis de la cantidad de **egresados** de los **años 2021 y 2023** en Universidades tanto Nacionales como provinciales. 
+
+```{r}
+# Cargo paquetes necesarios
+library(readxl)
+library(dplyr)
+library(ggplot2)
+
+# Cargo datos desde la hoja correspondiente
+datos_2021 <- read_excel("1.2 Indicadores 2021.xlsx", sheet = "C 1.2.1a", skip = 2)
+datos_2023 <- read_excel("1.2 Indicadores 2023.xlsx", sheet = "C 1.2.1a", skip = 2)
+
+# Proceso datos de 2021
+egresados_2021 <- datos_2021 %>%
+  select(Institución, `Egresadas/os (EGR)`) %>%
+  filter(!is.na(`Egresadas/os (EGR)`)) %>%
+  mutate(
+    `Egresadas/os (EGR)` = as.numeric(gsub("[^0-9]", "", `Egresadas/os (EGR)`)),
+    tipo = case_when(
+      grepl("Nacional", Institución) ~ "Nacional",
+      grepl("Provincial", Institución) ~ "Provincial",
+      TRUE ~ NA_character_
+    ),
+    año = 2021
+  ) %>%
+  filter(!is.na(tipo)) %>%
+  group_by(año, tipo) %>%
+  summarise(Egresados = sum(`Egresadas/os (EGR)`, na.rm = TRUE), .groups = "drop")
+
+# Proceso datos de 2023
+egresados_2023 <- datos_2023 %>%
+  select(Institución, `Egresados (EGR)`) %>%
+  filter(!is.na(`Egresados (EGR)`)) %>%
+  mutate(
+    `Egresados (EGR)` = as.numeric(gsub("[^0-9]", "", `Egresados (EGR)`)),
+    tipo = case_when(
+      grepl("Nacional", Institución) ~ "Nacional",
+      grepl("Provincial", Institución) ~ "Provincial",
+      TRUE ~ NA_character_
+    ),
+    año = 2023
+  ) %>%
+  filter(!is.na(tipo)) %>%
+  group_by(año, tipo) %>%
+  summarise(Egresados = sum(`Egresados (EGR)`, na.rm = TRUE), .groups = "drop")
+
+# Uno todos los datos
+egresados_comparados <- bind_rows(egresados_2021, egresados_2023)
+
+# Creo gráfico de columnas agrupadas
+ggplot(egresados_comparados, aes(x = factor(año), y = Egresados, fill = tipo)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  geom_text(aes(label = Egresados), position = position_dodge(width = 0.9), vjust = -0.5) +
+  labs(
+    title = "Comparación de egresados por tipo de universidad (2021 vs 2023)",
+    x = "Año",
+    y = "Cantidad de egresados",
+    fill = "Tipo de universidad"
+  ) +
+  theme_minimal()
+```
+
+
+```{r ver_columnas_2023}
+# Mostrar nombres de columnas del archivo 2023
+colnames(datos_2023)
 
 #hola
 
