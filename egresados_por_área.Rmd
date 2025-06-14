@@ -1,0 +1,29 @@
+---
+title: "Egresados por área disciplinar"
+author: "Camila Rondon"
+date: "2025-06-13"
+output: html_document
+---
+
+## ¿Cómo varía la cantidad de egresados por área disciplinar?
+
+A partir del análisis de los datos entre 2020 y 2022, se observa que la cantidad de egresados varía según el área disciplinar. Algunas áreas presentan un crecimiento sostenido, mientras que otras se mantienen estables o con leves caídas.  
+Por ejemplo, áreas como Ciencias de la Salud y Ciencias Sociales tienen una gran cantidad de egresados en todos los años analizados, lo cual puede estar relacionado con su alta demanda y amplia oferta académica. En cambio, en áreas como Ciencias Humanas, se nota una disminución, especialmente en la gestión estatal, lo que podría vincularse a factores como el desinterés por ciertas carreras o dificultades para completarlas.
+
+```{r cargar-cuadro, echo=FALSE, message=FALSE, warning=FALSE}
+# Cargar paquetes
+library(readr)
+library(knitr)
+library(kableExtra)
+
+# Leer los datos del archivo CSV
+egresados <- read_csv("datos_originales_para_R.csv")
+
+# Mostrar la tabla con estilo
+kable(egresados, format = "html", caption = "Cantidad de egresados por área disciplinar (2020-2022)") %>%
+  kable_styling(full_width = FALSE, bootstrap_options = c("striped", "hover"))
+```
+
+## Conclusión
+
+La evolución en la cantidad de egresados no es igual en todas las disciplinas, y refleja tanto el interés de los estudiantes como las condiciones del sistema educativo y el contexto social.
