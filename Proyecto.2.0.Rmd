@@ -166,8 +166,141 @@ ggplot(datosxcarrera, aes(x = reorder(Carrrera, -graduadosxcarrera),
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 40, hjust = 1)) +
   theme(plot.title = element_text(size = 16, hjust = 0.5))
+```
 
-``` 
+## RELACION GÉNERO - CANTIDAD DE GRADUADOS - TIPO DE INSTITUCIÓN
+### A continuación, realizamos un pequeño análisis respecto a la cantidad de egresados, su género (mujer u hombre) y el tipo de institucion de la cual proviene, ya sea universidad pública o privada. El objetivo de esto es ver si hay más egresados del género femenino o masculino.
+El primer gráfico que veremos será aquel proveniente de las universidades públicas:
+``` {r Camila_gonzalez , warning=FALSE , message= FALSE}
+#De aca obtengo los datos
+data_2023 <- read_excel("2.1 Pregrado y Grado Gestión Estatal 2023.xlsx", sheet ="C2.1.5b",skip=2)
+
+# En el siguiente grafico demuestro la distribucion por genero de los egresados en las universidades PUBLICAS 
+#Defino las variables (los datos los obtuve directamente del anuario, alli se encuentran ya detallados)
+#Los podemos ver en el excel "2.1 Pregrado y Grado Gestión Estatal 202" hoja:"C2.1.5 
+total_egresados_publicas <- 88288
+mujeres_porcentaje_publicas <- 63.4
+varones_porcentaje_publicas <- 36.6
+
+#Obtengo el total real a partir de los datos del porcentaje
+total_mujeres_publicas <- (total_egresados_publicas * mujeres_porcentaje_publicas)/100
+total_varones_publicas <- (total_egresados_publicas * varones_porcentaje_publicas)/100
+
+
+#creo el data frame que me va a permitir crear el grafico
+df_porcentajes_publicas <- data.frame(
+  Genero_publicas = c("Mujeres","Varones"),
+  Porcentaje_publicas = c(mujeres_porcentaje_publicas,varones_porcentaje_publicas),
+  Total_publicas = c(total_mujeres_publicas,total_varones_publicas)
+) %>%
+  mutate(
+    Etiqueta_publicas = paste0(Genero_publicas, "\n", Porcentaje_publicas, "%  (", round(Total_publicas), ")")
+  )
+
+# ACA CREO EL GRAFICO DE PORCIONES PARA VER LA DISTRIBUCION X GENERO EN UNIVERSIDADES PUBLICAS
+distribucion_publicas <- ggplot(df_porcentajes_publicas,aes( x = "", y = Porcentaje_publicas, fill = Genero_publicas)) +
+   geom_bar(stat = "identity", width = 1) +
+   coord_polar("y") +
+   geom_text(aes(label = Etiqueta_publicas),
+            position = position_stack(vjust = 0.5),
+            color = "Black", size = 5) +
+   scale_fill_manual(values = c("lightpink", "lightblue")) +
+   labs(title = "Distribución de Egresados por Género \n Universidades Publicas - Año 2023") +
+   theme_void() +
+   theme(plot.title = element_text(hjust = 0.5, size = 16),
+         legend.position = "none")
+     
+#Con esto podemos ejecutar el grafico directamente
+distribucion_publicas
+```
+
+## A continuación, el gráfico relacionado a las universidades privadas:
+``` {r Camila_gonzalez , warning=FALSE , message= FALSE}
+
+# ------- PARA LAS UNIVERSIDADES PRIVADAS
+
+total_egresados_privadas <- 50894
+mujeres_porcentaje_privadas <- 64.7
+varones_porcentaje_privadas <- 35.3
+
+total_mujeres_privadas <- (total_egresados_privadas * mujeres_porcentaje_privadas)/100
+total_varones_privadas <- (total_egresados_privadas * varones_porcentaje_privadas)/100
+
+df_porcentajes_privadas <- data.frame(
+  Genero_privadas = c("Mujeres","Varones"),
+  Porcentaje_privadas = c(mujeres_porcentaje_privadas,varones_porcentaje_privadas),
+  Total_privadas = c(total_mujeres_privadas,total_varones_privadas)
+) %>%
+  mutate(
+    Etiqueta_privadas = paste0(Genero_privadas, "\n", Porcentaje_privadas, "%  (", round(Total_privadas), ")")
+  )
+
+# ACA CREO EL GRAFICO DE PORCIONES PARA VER LA DISTRIBUCION X GENERO EN UNIVERSIDADES PUBLICAS
+distribucion_privadas <- ggplot(df_porcentajes_privadas,aes( x = "", y = Porcentaje_privadas, fill = Genero_privadas)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar("y") +
+  geom_text(aes(label = Etiqueta_privadas),
+            position = position_stack(vjust = 0.5),
+            color = "White", size = 5) +
+  scale_fill_manual(values = c("deeppink", "blue")) +
+  labs(title = "Distribución de Egresados por Género \n Universidades Privadas - Año 2023") +
+  theme_void() +
+  theme(plot.title = element_text(hjust = 0.5, size = 16),
+        legend.position = "none")
+
+#CON ESTO EJECUTO EL GRAFICO
+distribucion_privadas
+
+```
+#Por último, el siguiente gráfico es una pequeña comparación de la cantidad de egresados según género y tipo de universidad, como podemos apreciar, hay una mayor cantidad de graduadas mujeres, y este patrón se da tanto en universidades públicas como privadas:
+``` {r Camila_gonzalez , warning=FALSE , message= FALSE}
+
+# ---- GRAFICO COMPARATIVO 
+
+#LOS DATOS QUE TENIAMOS ANTES SOLO QUE REDONDEADOS
+
+total_mujeres_publicas2 <- round((total_egresados_publicas * mujeres_porcentaje_publicas)/100)
+total_varones_publicas2 <- round((total_egresados_publicas * varones_porcentaje_publicas)/100)
+total_mujeres_privadas2 <- round((total_egresados_privadas * mujeres_porcentaje_privadas)/100)
+total_varones_privadas2 <- round((total_egresados_privadas * varones_porcentaje_privadas)/100)
+
+
+
+# CREO EL DATAFRAME CON LOS DATOS QUE VOY A USAR EN EL GRAFICO
+df_comparativo2 <- data.frame(
+  Genero2 = c("Mujeres", "Mujeres", "Varones", "Varones"),
+  Tipo2 = c("Pública", "Privada", "Pública", "Privada"),
+  Total2 = c(total_mujeres_publicas2, total_mujeres_privadas2, total_varones_publicas2, total_varones_privadas2),
+  Grupo2 = c("Mujeres Pública", "Mujeres Privada", "Varones Pública", "Varones Privada"),
+  colores_por_grupo2 <- c( "Mujeres Pública" = "lightpink", "Mujeres Privada" = "deeppink",
+                           "Varones Pública" = "lightblue", "Varones Privada" = "blue" )
+)
+
+# creo el grafico comparativo
+grafico_comparativo <- ggplot(df_comparativo2, aes(x = Genero2, y = Total2, fill = Grupo2)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.7), width = 0.6) +
+  geom_text(aes(label = Total2), position = position_dodge(width = 0.7),vjust = -0.5, size = 4) +
+  scale_fill_manual(values = colores_por_grupo2,labels = c(
+      "Mujeres Pública" = "Universidad Pública",
+      "Mujeres Privada" = "Universidad Privada",
+      "Varones Pública" = "Universidad Pública",
+      "Varones Privada" = "Universidad Privada"
+    ),
+    name = "Referencias") +
+  labs(
+    title = "Egresados por Género y Tipo de Universidad - 2023",
+    x = "Género",
+    y = "Total de Egresados") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 16),
+    axis.text.x = element_text(size = 12)
+)
+    
+
+#CON ESTO EJECUTO EL GRAFICO
+grafico_comparativo
+```
 
 
 ### Reinscriptos en universidades nacionales de gestión estatal
