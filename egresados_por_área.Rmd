@@ -2,7 +2,17 @@
 title: "Egresados por área disciplinar"
 author: "Camila Rondon"
 date: "2025-06-13"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    collapsed: true
+    smooth_scroll: true
+    theme: journal
+    highlight: kate
+    df_print: paged
+    code_folding: show
 ---
 
 
@@ -25,6 +35,8 @@ egresados <- read_csv("datos_originales_para_R.csv")
 kable(egresados, format = "html", caption = "Cantidad de egresados por área disciplinar (2020-2022)") %>%
   kable_styling(full_width = FALSE, bootstrap_options = c("striped", "hover"))
 ```
+
+## Ojiva
 
 ```{r}
 library(dplyr)

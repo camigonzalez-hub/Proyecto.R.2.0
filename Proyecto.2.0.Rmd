@@ -1,8 +1,8 @@
 ---
 title:  "<u> Investigacion sobre las universidades </u>"
 
-author: "INTEGRANTES: Camila Gonzalez, Luciana Parallela
-Camila Rondon, Mauri, Lucas Colosimo"
+author: "INTEGRANTES: Camila Gonzalez, Luciana Parallela,
+Camila Rondon, Mauricio Medina, Lucas Colosimo"
 
 date: "**Recolección De Datos**"
 
@@ -34,7 +34,7 @@ Estas fuentes permiten analizar los factores que influyen en la *tasa de egreso 
 
 #### La *problemática* que hemos elegido para el presente trabajo se basa en los factores que hacen que haya menor o mayor tasa de egresados en las universidades de Buenos Aires. En base a esta problemática y a partir de los data sets seleccionados y a su respectivo análisis, hemos elegido los siguientes factores a analizar:
 
--   Cuál es la diferencia en cantidad de graduados en instituciones públicas o privadas (tanto a nivel general y en carreras específicas.
+-   Cuál es la diferencia en cantidad de graduados en instituciones públicas o privadas (tanto a nivel general y en carreras específicas).
 
 -   Cómo varía la cantidad de egresados s/ área disciplinar (Área de ingeniería tiene más egresados que en otras áreas). (Gráfico de torta o barras: eje x: área disciplinar, eje y: cantidad de egresados)
 
@@ -181,7 +181,7 @@ El primer gráfico que veremos será aquel proveniente de las **universidades p�
 
 ``` {r Camila_gonzalez3 , warning=FALSE , message= FALSE, echo=FALSE}
 #De aca obtengo los datos
-data_2023 <- read_excel("2.1 Pregrado y Grado Gestión Estatal 2023.xlsx", sheet ="C2.1.5b",skip=2)
+data_2023 <- read_excel("2.1 Pregrado y Grado Gestión Estatal 2023.xlsx", sheet ="C2.1.5b",skip=2)
 
 # En el siguiente grafico demuestro la distribucion por genero de los egresados en las universidades PUBLICAS 
 #Defino las variables (los datos los obtuve directamente del anuario, alli se encuentran ya detallados)
@@ -427,7 +427,61 @@ ggplot(egresados_comparados, aes(x = factor(año), y = Egresados, fill = tipo)) 
   theme_minimal()
 ```
 
+### ¿Cómo varía la cantidad de egresados por área disciplinar?
 
+A partir de los datos recolectados, se puede observar que la cantidad de egresados varía bastante según el área disciplinar. Algunas áreas, como *Ciencias de la Salud: Medicina*, tienen una cantidad muy alta de egresados tanto en universidades estatales como privadas, lo que indica una fuerte presencia en el sistema educativo. En cambio, áreas como *Arquitectura y Diseño* o *Biología* tienen cifras más bajas.
+
+También se nota que en ciertas disciplinas, como *Economía y Administración*, el número de egresados en la gestión privada es incluso mayor que en la estatal. Este tipo de diferencias nos ayudan a entender cómo se distribuyen los egresos en función del tipo de institución y del interés que despierta cada carrera.
+
+```{r cargar-cuadro, echo=FALSE, message=FALSE, warning=FALSE}
+# Cargar paquetes
+library(readr)
+library(knitr)
+library(kableExtra)
+
+# Leer los datos del archivo CSV
+egresados <- read_csv("datos_originales_para_R.csv")
+
+# Mostrar la tabla con estilo
+kable(egresados, format = "html", caption = "Cantidad de egresados por área disciplinar (2020-2022)") %>%
+  kable_styling(full_width = FALSE, bootstrap_options = c("striped", "hover"))
+```
+
+### Ojiva
+
+```{r}
+library(dplyr)
+library(ggplot2)
+
+# Aseguramos que la columna Total sea numérica
+egresados <- egresados %>%
+  mutate(Total = as.numeric(Total)) %>%
+  arrange(Total) %>%
+  mutate(FrecuenciaAcumulada = cumsum(Total))
+
+# Creamos el Ojiva
+ggplot(egresados, aes(x = reorder(`Rama y disciplina`, Total), y = FrecuenciaAcumulada, group = 1)) +
+  geom_line(color = "steelblue", size = 1.2) +
+  geom_point(color = "steelblue", size = 2) +
+  labs(
+    title = "Ojiva: Frecuencia acumulada de egresados por área disciplinar",
+    x = "Área disciplinar (ordenada por total)",
+    y = "Frecuencia acumulada"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
+### Interpretación de la ojiva
+
+La ojiva permite visualizar cómo se acumula el total de egresados por área disciplinar. Al ordenar las disciplinas de menor a mayor según su cantidad de egresados, observamos que unas pocas áreas concentran una gran parte del total acumulado. Por ejemplo, Ciencias de la Salud: Medicina aporta un incremento considerable en la curva, mientras que disciplinas como Arquitectura y Diseño o Biología generan un aumento más gradual.
+
+Este tipo de representación es útil porque permite identificar rápidamente qué áreas tienen mayor peso en el total de egresados. Desde una perspectiva de Ciencia de Datos, la ojiva ayuda a detectar posibles desequilibrios en la distribución y podría servir como base para futuros análisis más profundos o recomendaciones educativas.
+
+### Conclusión
+
+Podemos observar que la variabilidad no solo depende del área, sino también del año y del tipo de institución. Este tipo de patrones pueden ser claves para entender cómo se comporta el sistema educativo y qué áreas requieren más atención o inversión. Como estudiante de Ciencia de Datos, es interesante pensar cómo estos datos podrían ayudar a construir modelos predictivos o a guiar futuras decisiones en política educativa.
 
 
 
