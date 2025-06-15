@@ -8,8 +8,9 @@ output: html_document
 
 ## ¿Cómo varía la cantidad de egresados por área disciplinar?
 
-A partir del análisis de los datos entre 2020 y 2022, se observa que la cantidad de egresados varía según el área disciplinar. Algunas áreas presentan un crecimiento sostenido, mientras que otras se mantienen estables o con leves caídas.  
-Por ejemplo, áreas como Ciencias de la Salud y Ciencias Sociales tienen una gran cantidad de egresados en todos los años analizados, lo cual puede estar relacionado con su alta demanda y amplia oferta académica. En cambio, en áreas como Ciencias Humanas, se nota una disminución, especialmente en la gestión estatal, lo que podría vincularse a factores como el desinterés por ciertas carreras o dificultades para completarlas.
+A partir de los datos recolectados, se puede observar que la cantidad de egresados varía bastante según el área disciplinar. Algunas áreas, como *Ciencias de la Salud: Medicina*, tienen una cantidad muy alta de egresados tanto en universidades estatales como privadas, lo que indica una fuerte presencia en el sistema educativo. En cambio, áreas como *Arquitectura y Diseño* o *Biología* tienen cifras más bajas.
+
+También se nota que en ciertas disciplinas, como *Economía y Administración*, el número de egresados en la gestión privada es incluso mayor que en la estatal. Este tipo de diferencias nos ayudan a entender cómo se distribuyen los egresos en función del tipo de institución y del interés que despierta cada carrera.
 
 ```{r cargar-cuadro, echo=FALSE, message=FALSE, warning=FALSE}
 # Cargar paquetes
@@ -25,6 +26,36 @@ kable(egresados, format = "html", caption = "Cantidad de egresados por área dis
   kable_styling(full_width = FALSE, bootstrap_options = c("striped", "hover"))
 ```
 
+```{r}
+library(dplyr)
+library(ggplot2)
+
+# Aseguramos que la columna Total sea numérica
+egresados <- egresados %>%
+  mutate(Total = as.numeric(Total)) %>%
+  arrange(Total) %>%
+  mutate(FrecuenciaAcumulada = cumsum(Total))
+
+# Creamos el Ojiva
+ggplot(egresados, aes(x = reorder(`Rama y disciplina`, Total), y = FrecuenciaAcumulada, group = 1)) +
+  geom_line(color = "steelblue", size = 1.2) +
+  geom_point(color = "steelblue", size = 2) +
+  labs(
+    title = "Ojiva: Frecuencia acumulada de egresados por área disciplinar",
+    x = "Área disciplinar (ordenada por total)",
+    y = "Frecuencia acumulada"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
+## Interpretación de la ojiva
+
+La ojiva permite visualizar cómo se acumula el total de egresados por área disciplinar. Al ordenar las disciplinas de menor a mayor según su cantidad de egresados, observamos que unas pocas áreas concentran una gran parte del total acumulado. Por ejemplo, Ciencias de la Salud: Medicina aporta un incremento considerable en la curva, mientras que disciplinas como Arquitectura y Diseño o Biología generan un aumento más gradual.
+
+Este tipo de representación es útil porque permite identificar rápidamente qué áreas tienen mayor peso en el total de egresados. Desde una perspectiva de Ciencia de Datos, la ojiva ayuda a detectar posibles desequilibrios en la distribución y podría servir como base para futuros análisis más profundos o recomendaciones educativas.
+
 ## Conclusión
 
-La evolución en la cantidad de egresados no es igual en todas las disciplinas, y refleja tanto el interés de los estudiantes como las condiciones del sistema educativo y el contexto social.
+Podemos observar que la variabilidad no solo depende del área, sino también del año y del tipo de institución. Este tipo de patrones pueden ser claves para entender cómo se comporta el sistema educativo y qué áreas requieren más atención o inversión. Como estudiante de Ciencia de Datos, es interesante pensar cómo estos datos podrían ayudar a construir modelos predictivos o a guiar futuras decisiones en política educativa.
