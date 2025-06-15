@@ -120,6 +120,7 @@ df <- data.frame(
 # GRAFICO SOBRE TOTAL DE EGRESADOS DE PRIVADAS VS PUBLICAS
 ggplot(df, aes(x = Egresados_2020, y = Cantidad, fill = Egresados_2020)) + 
   geom_bar(stat = "identity") + 
+  geom_text(aes(label = Cantidad), vjust = -0.5, size = 5) +
   scale_fill_manual(values = c("lightpink2", "lightblue3")) +
   labs(
     title = "Cantidad de graduados según tipo de institución",
