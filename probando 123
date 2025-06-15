@@ -1,0 +1,35 @@
+---
+title: "Análisis del cambio en egresados 2020-2021-2023"
+author: "Mauricio Medina"
+date: "2025-06-15"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Crear dataframe con totales de egresados por año
+egresados <- data.frame(
+  Año = c(2020, 2021, 2023),
+  Total = c(139182, 142826, 139182)
+)
+
+egresados
+
+# Calcular cambio absoluto y porcentaje
+egresados$Cambio_Absoluto <- c(NA, diff(egresados$Total))
+egresados$Cambio_Porcentaje <- c(NA, round((diff(egresados$Total) / head(egresados$Total, -1)) * 100, 2))
+
+egresados
+
+cat("### Análisis del cambio en el número total de egresados\n\n")
+
+cat(paste0("Entre 2020 y 2021, el total de egresados pasó de ", egresados$Total[1], 
+           " a ", egresados$Total[2], 
+           ", lo que representa un aumento de ", egresados$Cambio_Absoluto[2], 
+           " egresados (", egresados$Cambio_Porcentaje[2], "%).\n\n"))
+
+cat(paste0("Entre 2021 y 2023, el total de egresados pasó de ", egresados$Total[2], 
+           " a ", egresados$Total[3], 
+           ", lo que representa una disminución de ", abs(egresados$Cambio_Absoluto[3]), 
+           " egresados (", egresados$Cambio_Porcentaje[3], "%).\n"))
