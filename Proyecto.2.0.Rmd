@@ -428,8 +428,6 @@ ggplot(egresados_comparados, aes(x = factor(año), y = Egresados, fill = tipo)) 
 ```
 
 
-# VES ESTO?
-
 
 
 
