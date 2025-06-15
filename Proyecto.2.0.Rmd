@@ -42,18 +42,18 @@ Estas fuentes permiten analizar los factores que influyen en la *tasa de egreso 
 
 -   Carreras con mayor y menor retención estudiantil (Con mayor egresados/retención son abogacía, contador público y enfermería; con menor retención (más cantidad de ingresantes pero menor cantidad de egresados).
 
--   Cómo varía la cantidad de graduados según su edad y género.
+-   Cómo varía la cantidad de graduados según su edad y género. **CAMI G, SOLO GENERO **
 
 -   Cómo varía la cantidad de egresados empleados, dependiendo de la cantidad de ingresantes con o sin empleo. 
 
 ## Análisis exploratorio (algunas preguntas las vamos a sacar porque son muchas) 
 
-- ¿Qué carreras tienen mayor y menor cantidad de egresados? 
+- ¿Qué carreras tienen mayor y menor cantidad de egresados? **CAMI G, SOLO MAYOR CANTIDAD**
 
 - ¿Cómo varía la cantidad de egresados por área disciplinar?
 
 - ¿Existen diferencias significativas en la cantidad de egresados
-entre instituciones estatales y privadas en la misma carrera?
+entre instituciones estatales y privadas en la misma carrera? **CAMI G, DIF. ENTRE Q EN PRIV Y PUB, PERO NO SEGUN CARRERAR**
 
 - Cómo cambió el número total de egresados entre 2020, 2021, 2023?
 
@@ -69,7 +69,7 @@ entre instituciones estatales y privadas en la misma carrera?
 
 - ¿Cómo cambió a lo largo del tiempo la modalidad elegida y su cantidad de graduados? 
 
-- ¿Qué género tiene mayor cantidad de graduados, son más hombres o mujeres? 
+- ¿Qué género tiene mayor cantidad de graduados, son más hombres o mujeres? **CAMI G**
 
 - ¿Qué rango de edad tiene más egresados?
 
@@ -80,15 +80,18 @@ entre instituciones estatales y privadas en la misma carrera?
 
 El dataset de los "Anuarios Estadísticos" del sistema universitario es la fuente más adecuada para estudiar la evolución en diversas áreas, las causas de ello y diferencias en la tasa de egreso universitaria en Buenos Aires. Además la información es confiable porque es oficial, completa, accesible, comparable entre años, y centrada en variables directamente vinculadas al fenómeno de estudio.
 
+### Cantidad de graduados según tipo de institución
 
- 
-```{r Camila_gonzalez , warning=FALSE , message= FALSE}
+Se analiza la **diferencia entre cantidad de graduados provenientes de universidades públicas y universidades privadas**, el objetivo es ver cuál tipo proporciona una mayor cantidad de graduados a nivel nacional, podremos ver estas diferencias representadas en el siguiente gráfico:
+
+
+```{r Camila_gonzalez 1 , warning=FALSE , message= FALSE, echo=FALSE }
 # CUAL ES LA DIFERENCIA ENTRE CANTIDAD DE GRADUADOS EN UNIVERSIDADES PUBLICAS Y PRIVADAS - CAMI CON EL DE CHEQUEADO
 library(readxl)
 datos_chequeado <- read_excel("Universidades - egresados.xlsx")
 library(tidyverse)
 
-#ESTE CUENTA LA CANTIDAD DE EGRESADOS DE UNIVERSIDADES PRIVADAS
+#Esto se encarga de filtrar la cantidad de egresados en universidades privadas
 egresados_privadas <-  datos_chequeado %>%
   filter(`Año Informado` == 2020,
          `Régimen` == "Privado",
@@ -96,7 +99,7 @@ egresados_privadas <-  datos_chequeado %>%
    summarise(total_egresados_privadas = sum(Egresados, na.rm = TRUE)) %>%
   pull(total_egresados_privadas)
 
-# ESTE CUENTA LA CANTIDAD DE EGRESADOS EN UNIVERSIDADES ESTATALES
+# sto se encarga de filtrar la cantidad de egresados en universidades ESTATALES
 egresados_estatales <- datos_chequeado %>%
   filter(`Año Informado` == 2020,
          `Régimen` == "Estatal",
@@ -108,7 +111,7 @@ egresados_estatales <- datos_chequeado %>%
 library(tidyverse)
 library(ggplot2)
 
-# GRAFICO DE BARRAS QUE COMPARA LA CANTIDAD DE EGRESADOS DE UNIVERSIDADES PUBLICAS VS PRIVADAS
+# Aca creo el data frame para crear el grafico
 df <- data.frame(
   Egresados_2020 = c("Egresados estatales","Egresados Privados"),
   Cantidad = c(egresados_estatales , egresados_privadas)
@@ -126,16 +129,19 @@ ggplot(df, aes(x = Egresados_2020, y = Cantidad, fill = Egresados_2020)) +
   ) +
   theme_minimal() +
   theme(plot.title = element_text(size = 16, hjust = 0.5))
+```
+
+### TOP 10 CARRERAS CON MÁS GRADUADOS
+Para ampliar la información, nos hemos preguntado ¿ cuáles son las carreras con más cantidad de graduados? para responder a ello, hemos escogido las **top 10 carreras con más cantidad de graduados** y hemos adicionado el total por cada una de ellas, esto es a nivel nacional, según datos del 2020.
 
 
-
+```{r Camila_gonzalez2 , warning=FALSE , message= FALSE, echo=FALSE }
 #cantidad de graduados por carrera
 graduadosxcarrera<- datos_chequeado %>%
   filter(`Año Informado` == 2020,)%>%
   arrange(desc(Egresados))%>%
   slice(2:11)%>%
   pull("Egresados")
-print(graduadosxcarrera)
 
 
 datosxcarrera <- datos_chequeado %>%
@@ -145,7 +151,6 @@ datosxcarrera <- datos_chequeado %>%
   summarise(graduadosxcarrera = sum(Egresados)) %>%
   arrange(desc(graduadosxcarrera)) %>%
   slice(1:10)  # Top 10 carreras
-print(datosxcarrera)
 
 #GRAFICO DE CANTIDAD DE TOP CARRRERAS CON MAS GRADUADOS
 library(RColorBrewer)
@@ -168,10 +173,13 @@ ggplot(datosxcarrera, aes(x = reorder(Carrrera, -graduadosxcarrera),
   theme(plot.title = element_text(size = 16, hjust = 0.5))
 ```
 
-## RELACION GÉNERO - CANTIDAD DE GRADUADOS - TIPO DE INSTITUCIÓN
-### A continuación, realizamos un pequeño análisis respecto a la cantidad de egresados, su género (mujer u hombre) y el tipo de institucion de la cual proviene, ya sea universidad pública o privada. El objetivo de esto es ver si hay más egresados del género femenino o masculino.
-El primer gráfico que veremos será aquel proveniente de las universidades públicas:
-``` {r Camila_gonzalez , warning=FALSE , message= FALSE}
+### RELACION GÉNERO - CANTIDAD DE GRADUADOS - TIPO DE INSTITUCIÓN
+
+A continuación, realizamos un pequeño análisis respecto a la cantidad de egresados, su género (mujer u hombre) y el tipo de institucion de la cual proviene, ya sea universidad pública o privada. El objetivo de esto es ver si hay más egresados del género femenino o masculino.
+El primer gráfico que veremos será aquel proveniente de las **universidades públicas**:
+
+
+``` {r Camila_gonzalez3 , warning=FALSE , message= FALSE, echo=FALSE}
 #De aca obtengo los datos
 data_2023 <- read_excel("2.1 Pregrado y Grado Gestión Estatal 2023.xlsx", sheet ="C2.1.5b",skip=2)
 
@@ -214,8 +222,10 @@ distribucion_publicas <- ggplot(df_porcentajes_publicas,aes( x = "", y = Porcent
 distribucion_publicas
 ```
 
-## A continuación, el gráfico relacionado a las universidades privadas:
-``` {r Camila_gonzalez , warning=FALSE , message= FALSE}
+A continuación, el gráfico relacionado a las **universidades privadas**:
+
+
+``` {r Camila_gonzalez4 , warning=FALSE , message= FALSE, echo=FALSE}
 
 # ------- PARA LAS UNIVERSIDADES PRIVADAS
 
@@ -252,8 +262,11 @@ distribucion_privadas <- ggplot(df_porcentajes_privadas,aes( x = "", y = Porcent
 distribucion_privadas
 
 ```
-#Por último, el siguiente gráfico es una pequeña comparación de la cantidad de egresados según género y tipo de universidad, como podemos apreciar, hay una mayor cantidad de graduadas mujeres, y este patrón se da tanto en universidades públicas como privadas:
-``` {r Camila_gonzalez , warning=FALSE , message= FALSE}
+
+Por último, el siguiente gráfico es una pequeña **comparación de la cantidad de egresados según género y tipo de universidad**, como podemos apreciar, hay una mayor cantidad de graduadas mujeres, y este patrón se da tanto en universidades públicas como privadas:
+
+
+``` {r Camila_gonzalez5 , warning=FALSE , message= FALSE, echo=FALSE}
 
 # ---- GRAFICO COMPARATIVO 
 
