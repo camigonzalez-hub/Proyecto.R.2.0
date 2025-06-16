@@ -1,13 +1,11 @@
 ---
-title:  "<u> Investigacion sobre las universidades </u>"
-
-author: "INTEGRANTES: Camila Gonzalez, Luciana Parallela,
-Camila Rondon, Mauricio Medina, Lucas Colosimo"
-
-date: "**Recolección De Datos**"
-
-output: 
+title: "<u> Investigacion sobre las universidades </u>"
+author: 'INTEGRANTES: Camila Gonzalez, Luciana Parallela, Camila Rondon, Mauricio
+  Medina, Lucas Colosimo'
+date: '**Recolección De Datos**'
+output:
   html_document: default
+  pdf_document: default
 ---
 # INTRODUCCIóN
 
