@@ -33,38 +33,22 @@ Estas fuentes permiten analizar los factores que influyen en la *tasa de egreso 
 
 ## Análisis exploratorio 
 
-- ¿Qué carreras tienen mayor y menor cantidad de egresados? **CAMI G, SOLO MAYOR CANTIDAD**
+- ¿Qué carreras tienen mayor cantidad de egresados? **CAMI G, SOLO MAYOR CANTIDAD**
 
 - ¿Cómo varía la cantidad de egresados por área disciplinar? **CAMI R (CUADRO Y OJIVA)**
 
 - ¿Existen diferencias significativas en la cantidad de egresados
-entre instituciones estatales y privadas en la misma carrera? **CAMI G, DIF. ENTRE Q EN PRIV Y PUB, PERO NO SEGUN CARRERAR**
+entre instituciones estatales y privadas ? **CAMI G, DIF. ENTRE Q EN PRIV Y PUB, PERO NO SEGUN CARRERAR**
 
 - ¿Cómo varió la cantidad de reinscriptos en Universidades Nacionales entre los años 2020, 2021 y 2023? Lu
 
 - ¿Hubo diferencias en la cantidad de egresados en Universidades Nacionales y Provinciales durante los años 2021 y 2023? Lu
 
-- ¿Cómo cambió el número total de egresados entre 2020, 2021, 2023?
-
-- ¿Crecieron más los egresados en universidades estatales o privadas?
-
 - ¿Qué año tiene mayor cantidad de reinscriptos? Lu
-
-- ¿Existe relación entre duración promedio y tasa de egreso?
-
-- ¿La relación alumno/docente influye en la tasa de egreso?
-
-- ¿Qué modalidad tiene mayor cantidad de ingresantes/graduados? 
-
-- ¿Cómo cambió a lo largo del tiempo la modalidad elegida y su cantidad de graduados? 
 
 - ¿Qué género tiene mayor cantidad de graduados, son más hombres o mujeres? **CAMI G**
 
-- ¿Qué rango de edad tiene más egresados?
-
 - ¿Cómo afecta en la cantidad de graduados el nivel de academico de los padres? **luca**
-
-- ¿Cómo varía la cantidad que inscriptos que trabajan en universidades privadas y públicas? Puede esto afectar la tasa de egreso en cada una?
 
 
 ## Justificación de la elección del dataset
@@ -616,6 +600,6 @@ ggplot(comparativo, aes(x = reorder(Nivel_academico, -Cantidad), y = Cantidad, f
 ```
 
 
-# Como podemos observar en el grafico de barras el nivel de acedemico de los padres es crucial en la cantidad de graduados!
+# Como podemos observar en el grafico de barras el nivel de academico de los padres es crucial en la cantidad de graduados!
 
 
