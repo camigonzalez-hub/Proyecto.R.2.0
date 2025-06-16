@@ -1,11 +1,12 @@
 ---
 title: "<u> Investigacion sobre las universidades </u>"
-author: 'INTEGRANTES: Camila Gonzalez, Luciana Parallela, Camila Rondon, Mauricio
-  Medina, Lucas Colosimo'
-date: '**Recolección De Datos**'
+author: "INTEGRANTES: Camila Gonzalez, Luciana Parallela, Camila Rondon, Mauricio Medina, Lucas Colosimo"
+date: "**Recolección De Datos**"
 output:
-  pdf_document: default
+  pdf_document:
+    latex_engine: xelatex
   html_document: default
+always_allow_html: true
 ---
 # INTRODUCCIóN
 
@@ -52,6 +53,10 @@ Estas fuentes permiten analizar los factores que influyen en la *tasa de egreso 
 
 - ¿Existen diferencias significativas en la cantidad de egresados
 entre instituciones estatales y privadas en la misma carrera? **CAMI G, DIF. ENTRE Q EN PRIV Y PUB, PERO NO SEGUN CARRERAR**
+
+-¿Cómo varió la cantidad de reinscriptos en Universidades Nacionales entre los años 2020, 2021 y 2023?
+
+-¿Hubo diferencias en la cantidad de egresados en Universidades Nacionales y Provinciales durante los años 2021 y 2023?
 
 - Cómo cambió el número total de egresados entre 2020, 2021, 2023?
 
