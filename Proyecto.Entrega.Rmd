@@ -63,7 +63,7 @@ Se analiza la **diferencia entre cantidad de graduados provenientes de universid
 
 
 
-```{r Camila_gonzalez 1 , warning=FALSE , message= FALSE }
+```{r Camila_gonzalez 1 , warning=FALSE , message= FALSE ,echo=FALSE}
 # CUAL ES LA DIFERENCIA ENTRE CANTIDAD DE GRADUADOS EN UNIVERSIDADES PUBLICAS Y PRIVADAS - CAMI CON EL DE CHEQUEADO
 library(readxl)
 datos_chequeado <- read_excel("Universidades - egresados.xlsx")
@@ -114,7 +114,7 @@ ggplot(df, aes(x = Egresados_2020, y = Cantidad, fill = Egresados_2020)) +
 Para ampliar la información, nos hemos preguntado ¿ cuáles son las carreras con más cantidad de graduados? para responder a ello, hemos escogido las **top 10 carreras con más cantidad de graduados** y hemos adicionado el total por cada una de ellas, esto es a nivel nacional, según datos del 2020.
 
 
-```{r Camila_gonzalez2 , warning=FALSE , message= FALSE }
+```{r Camila_gonzalez2 , warning=FALSE , message= FALSE ,echo=FALSE }
 #cantidad de graduados por carrera
 graduadosxcarrera<- datos_chequeado %>%
   filter(`Año Informado` == 2020,)%>%
@@ -162,7 +162,7 @@ El primer gráfico que veremos será aquel proveniente de las **universidades p�
 
 
 
-``` {r Camila_gonzalez3 , warning=FALSE , message= FALSE}
+``` {r Camila_gonzalez3 , warning=FALSE , message= FALSE,echo=FALSE}
 #De aca obtengo los datos
 data_2023 <- read_excel("2.1 Pregrado y Grado Gestión Estatal 2023.xlsx", sheet ="C2.1.5b",skip=2)
 
@@ -208,7 +208,7 @@ distribucion_publicas
 A continuación, el gráfico relacionado a las **universidades privadas**:
 
 
-``` {r Camila_gonzalez4 , warning=FALSE , message= FALSE }
+``` {r Camila_gonzalez4 , warning=FALSE , message= FALSE,echo=FALSE }
 
 # ------- PARA LAS UNIVERSIDADES PRIVADAS
 
@@ -249,7 +249,7 @@ distribucion_privadas
 Por último, el siguiente gráfico es una pequeña **comparación de la cantidad de egresados según género y tipo de universidad**, como podemos apreciar, hay una mayor cantidad de graduadas mujeres, y este patrón se da tanto en universidades públicas como privadas:
 
 
-``` {r Camila_gonzalez5 , warning=FALSE , message= FALSE}
+``` {r Camila_gonzalez5 , warning=FALSE , message= FALSE,echo=FALSE}
 
 # ---- GRAFICO COMPARATIVO 
 
@@ -305,7 +305,7 @@ A partir de este gráfico, se aprecia que el comportamiento de la cantidad de gr
 Hemos decidido analizar qué tipo de modalidad elegida por los estudiantes, siendo estas presencial o virtual, genera más cantidad de graduados. A partir de este análisis, hemos creado el siguiente gráfico comparativo:
 
 
-``` {r Camila_gonzalez6 , warning=FALSE , message= FALSE}
+``` {r Camila_gonzalez6 , warning=FALSE , message= FALSE,echo=FALSE}
 
 # los datos los obtuvimos de: 
 #data_2023_privadas_modalidad <- read_excel("2.2 Pregrado y Grado Gestión Privada 2023.xlsx", sheet = "C 2.2.26.a")
@@ -352,7 +352,7 @@ Como podemos ver, la virtualidad tiene un mayor impacto en las universidades pri
 
 Se analiza la cantidad de reinscriptos en universidades **nacionales de gestión estatal** en los años **2020, 2021 y 2023** a partir de los anuarios estadísticos del sistema universitario.
 
-```{r luciana_reinscriptos, message=FALSE, warning=FALSE}
+```{r luciana_reinscriptos, message=FALSE, warning=FALSE,echo=FALSE}
 
 library(readxl)
 library(dplyr)
@@ -397,9 +397,9 @@ ggplot(reinscriptos, aes(x = Año, y = Reinscriptos, fill = Año)) +
 
 ### Cantidad de egresados de Universidades Nacionales y Provinciales. 
 
-### A partir del siguiente gráfico se hace un analisis de la cantidad de **egresados** de los **años 2021 y 2023** en Universidades tanto Nacionales como provinciales. 
+A partir del siguiente gráfico se hace un analisis de la cantidad de **egresados** de los **años 2021 y 2023** en Universidades tanto Nacionales como provinciales. 
 
-```{r}
+```{r,, warning = FALSE, echo=FALSE, message=FALSE}
 # Cargo paquetes necesarios
 library(readxl)
 library(dplyr)
@@ -465,7 +465,7 @@ A partir de los datos recolectados, se puede observar que la cantidad de egresad
 
 También se nota que en ciertas disciplinas, como *Economía y Administración*, el número de egresados en la gestión privada es incluso mayor que en la estatal. Este tipo de diferencias nos ayudan a entender cómo se distribuyen los egresos en función del tipo de institución y del interés que despierta cada carrera.
 
-```{r cargar-cuadro, echo=FALSE, message=FALSE, warning=FALSE}
+```{r cargar-cuadro, echo=FALSE, message=FALSE, warning=FALSE,echo=FALSE}
 # Cargar paquetes
 library(readr)
 library(knitr)
@@ -481,7 +481,7 @@ kable(egresados, format = "html", caption = "Cantidad de egresados por área dis
 
 ### Ojiva
 
-```{r}
+```{r,echo=FALSE, warning=FALSE}
 library(dplyr)
 library(ggplot2)
 
@@ -512,14 +512,14 @@ La ojiva permite visualizar cómo se acumula el total de egresados por área dis
 Este tipo de representación es útil porque permite identificar rápidamente qué áreas tienen mayor peso en el total de egresados. Desde una perspectiva de Ciencia de Datos, la ojiva ayuda a detectar posibles desequilibrios en la distribución y podría servir como base para futuros análisis más profundos o recomendaciones educativas.
 
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE,echo=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(ggplot2)
 ```
 
 ### 📊 Datos de egresados
 
-```{r}
+```{r,echo=FALSE}
 egresados <- data.frame(
   Año = c(2020, 2021, 2023),
   Total = c(139182, 142826, 139182)
@@ -530,7 +530,7 @@ egresados
 
 ### 📈 Cálculo de cambios entre años
 
-```{r}
+```{r,echo=FALSE}
 egresados$Cambio_Absoluto <- c(NA, diff(egresados$Total))
 egresados$Cambio_Porcentaje <- c(NA, round((diff(egresados$Total) / head(egresados$Total, -1)) * 100, 2))
 
@@ -539,7 +539,7 @@ egresados
 
 ### 📊 Gráfico comparativo de egresados
 
-```{r}
+```{r,echo=FALSE}
 ggplot(egresados, aes(x = factor(Año), y = Total, fill = factor(Año))) +
   geom_bar(stat = "identity", width = 0.6) +
   labs(title = "Comparación del total de egresados por año",
@@ -571,7 +571,7 @@ cat("En resumen, el gráfico de barras nos permite visualizar claramente que el 
 ### ¿Cómo afecta a la cantidad de graduados el nivel academico de sus padres?
 
 
-``` {r madres_/graduados, message=FALSE, warning=FALSE}
+``` {r madres_/graduados, message=FALSE, warning=FALSE,echo=FALSE}
 #llamamos a las librarias que podemos llegar a utilizar
 library(readxl)
 library(ggplot2)
@@ -601,7 +601,7 @@ nivel_madre_limpio <- nivel_madre %>%
   filter(!Nivel_academico_sesgo %in% c("total", "no sabe", "ndi"))
 ```
 
-``` {r padres_/graduados, message=FALSE, warning=FALSE}
+``` {r padres_/graduados, message=FALSE, warning=FALSE,echo=FALSE}
 
 library(readxl)
 library(dplyr)
@@ -628,7 +628,7 @@ nivel_padre_limpio <- nivel_padre %>%
 
 ### 📊 Unimos los dos codigos para luego graficar la comparacion ver juntos ambos resultados
 
-``` {r comparación, message=FALSE, warning=FALSE}
+``` {r comparación, message=FALSE, warning=FALSE,echo=FALSE}
 library(readxl)
 library(dplyr)
 library(tidyr)
