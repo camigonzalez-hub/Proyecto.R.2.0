@@ -54,9 +54,11 @@ entre instituciones estatales y privadas ?
 
 - ¿Qué diferencias existen en la cantidad de egresados entre modalidad virtual y presencial? 
 
-## Justificación de la elección del dataset
+## Justificación de la elección de los datasets
 
 El dataset de los "Anuarios Estadísticos" del sistema universitario es la fuente más adecuada para estudiar la evolución en diversas áreas, las causas de ello y diferencias en la tasa de egreso universitaria en Buenos Aires. Además la información es confiable porque es oficial, completa, accesible, comparable entre años, y centrada en variables directamente vinculadas al fenómeno de estudio.
+
+Además, elegimos el dataset “Universidades - egresados” del proyecto Argentina en datos (Chequeado) porque permite entender cómo factores como la pobreza, la desocupación o el acceso a internet (hasta el año 2020) influyen en que una persona pueda terminar sus estudios o no. Detrás de cada egresado, y sobre todo de cada abandono, hay relidades desiguales que este dataset ayuda a visibilizar.
 
 ### Cantidad de graduados según tipo de institución
 
