@@ -51,11 +51,9 @@ entre instituciones estatales y privadas ?
 
 - ¿Qué diferencias existen en la cantidad de egresados entre modalidad virtual y presencial? 
 
-## Justificación de la elección de los datasets
+## Justificación de la elección del dataset
 
 El dataset de los "Anuarios Estadísticos" del sistema universitario es la fuente más adecuada para estudiar la evolución en diversas áreas, las causas de ello y diferencias en la tasa de egreso universitaria en Buenos Aires. Además la información es confiable porque es oficial, completa, accesible, comparable entre años, y centrada en variables directamente vinculadas al fenómeno de estudio.
-
-Además, elegimos el dataset “Universidades - egresados” del proyecto Argentina en datos (Chequeado) porque permite entender cómo factores como la pobreza, la desocupación o el acceso a internet (hasta el año 2020) influyen en que una persona pueda terminar sus estudios o no. Detrás de cada egresado, y sobre todo de cada abandono, hay relidades desiguales que este dataset ayuda a visibilizar.
 
 ### Cantidad de graduados según tipo de institución
 
@@ -151,6 +149,9 @@ ggplot(datosxcarrera, aes(x = reorder(Carrrera, -graduadosxcarrera),
   theme(axis.text.x = element_text(angle = 40, hjust = 1)) +
   theme(plot.title = element_text(size = 16, hjust = 0.5))
 ```
+
+Como podemos ver, las carreras más elegidas son aquellas pertenecientes a las ciencias sociales y no a las ciencias exactas. La razón de esto se puede deber al bajo nivel matemático que poseen los estudiantes de la educación básica (primaria y secundaria). Según las Pruebas Aprender realizadas cada año, en el 2024, solo el 14,2% de los estudiantes alcanzó un nivel satisfactorio en matemáticas. Por lo tanto, no es sorpresa que las carreras de ciencias exactas no sean las más elegidas. 
+
 
 ### RELACION GÉNERO - CANTIDAD DE GRADUADOS - TIPO DE INSTITUCIÓN
 
@@ -295,6 +296,7 @@ grafico_comparativo <- ggplot(df_comparativo2, aes(x = Genero2, y = Total2, fill
 grafico_comparativo
 ```
 
+A partir de este gráfico, se aprecia que el comportamiento de la cantidad de graduados en relación al género se replica tanto en universidades privadas como públicas, en donde en ambas las mujeres predominan en la cantidad de egresados. Es interesante notar que la cantidad de egresadas mujeres provenientes de universidades privadas incluso supera a la cantidad de egresados varones provenientes de universidades públicas.
 
 
 ### ¿Cómo afecta la modalidad de estudio a la cantidad de egresados? 
