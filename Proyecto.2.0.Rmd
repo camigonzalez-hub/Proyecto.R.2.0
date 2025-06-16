@@ -54,15 +54,15 @@ Estas fuentes permiten analizar los factores que influyen en la *tasa de egreso 
 - ¿Existen diferencias significativas en la cantidad de egresados
 entre instituciones estatales y privadas en la misma carrera? **CAMI G, DIF. ENTRE Q EN PRIV Y PUB, PERO NO SEGUN CARRERAR**
 
-- ¿Cómo varió la cantidad de reinscriptos en Universidades Nacionales entre los años 2020, 2021 y 2023?
+- ¿Cómo varió la cantidad de reinscriptos en Universidades Nacionales entre los años 2020, 2021 y 2023? Lu
 
-- ¿Hubo diferencias en la cantidad de egresados en Universidades Nacionales y Provinciales durante los años 2021 y 2023?
+- ¿Hubo diferencias en la cantidad de egresados en Universidades Nacionales y Provinciales durante los años 2021 y 2023? Lu
 
 - ¿Cómo cambió el número total de egresados entre 2020, 2021, 2023?
 
 - ¿Crecieron más los egresados en universidades estatales o privadas?
 
-- ¿Qué año tiene mayor cantidad de reinscriptos?
+- ¿Qué año tiene mayor cantidad de reinscriptos? Lu
 
 - ¿Existe relación entre duración promedio y tasa de egreso?
 
