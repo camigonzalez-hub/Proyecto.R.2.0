@@ -483,5 +483,61 @@ Este tipo de representación es útil porque permite identificar rápidamente qu
 Podemos observar que la variabilidad no solo depende del área, sino también del año y del tipo de institución. Este tipo de patrones pueden ser claves para entender cómo se comporta el sistema educativo y qué áreas requieren más atención o inversión. Como estudiante de Ciencia de Datos, es interesante pensar cómo estos datos podrían ayudar a construir modelos predictivos o a guiar futuras decisiones en política educativa.
 
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+```
+
+## 📊 Datos de egresados
+
+```{r}
+egresados <- data.frame(
+  Año = c(2020, 2021, 2023),
+  Total = c(139182, 142826, 139182)
+)
+
+egresados
+```
+
+## 📈 Cálculo de cambios entre años
+
+```{r}
+egresados$Cambio_Absoluto <- c(NA, diff(egresados$Total))
+egresados$Cambio_Porcentaje <- c(NA, round((diff(egresados$Total) / head(egresados$Total, -1)) * 100, 2))
+
+egresados
+```
+
+## 📊 Gráfico comparativo de egresados
+
+```{r}
+ggplot(egresados, aes(x = factor(Año), y = Total, fill = factor(Año))) +
+  geom_bar(stat = "identity", width = 0.6) +
+  labs(title = "Comparación del total de egresados por año",
+       x = "Año",
+       y = "Total de egresados") +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  geom_text(aes(label = Total), vjust = -0.5)
+```
+
+## 🧾 Interpretación
+
+```{r results='asis', echo=FALSE}
+cat("### Análisis del cambio en el número total de egresados\n\n")
+
+cat(paste0("Entre 2020 y 2021, el total de egresados pasó de ", egresados$Total[1],
+           " a ", egresados$Total[2],
+           ", lo que representa un aumento de ", egresados$Cambio_Absoluto[2],
+           " egresados (", egresados$Cambio_Porcentaje[2], "%).\n\n"))
+
+cat(paste0("Entre 2021 y 2023, el total de egresados pasó de ", egresados$Total[2],
+           " a ", egresados$Total[3],
+           ", lo que representa una disminución de ", abs(egresados$Cambio_Absoluto[3]),
+           " egresados (", egresados$Cambio_Porcentaje[3], "%).\n\n"))
+
+cat("En resumen, el gráfico de barras nos permite visualizar claramente que el año 2021 fue el de mayor cantidad de egresados, mientras que en 2020 y 2023 el número total fue exactamente el mismo. Esta oscilación puede reflejar variaciones en cohortes, políticas educativas o condiciones externas como la pandemia.\n")
+```
+
 
 
