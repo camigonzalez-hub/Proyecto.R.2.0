@@ -4,8 +4,8 @@ author: 'INTEGRANTES: Camila Gonzalez, Luciana Parallela, Camila Rondon, Maurici
   Medina, Lucas Colosimo'
 date: '**Recolección De Datos**'
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 # INTRODUCCIóN
 
