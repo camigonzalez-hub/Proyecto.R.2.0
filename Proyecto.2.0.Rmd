@@ -48,7 +48,7 @@ Estas fuentes permiten analizar los factores que influyen en la *tasa de egreso 
 
 - ¿Qué carreras tienen mayor y menor cantidad de egresados? **CAMI G, SOLO MAYOR CANTIDAD**
 
-- ¿Cómo varía la cantidad de egresados por área disciplinar?
+- ¿Cómo varía la cantidad de egresados por área disciplinar? **CAMI R (CUADRO Y OJIVA)**
 
 - ¿Existen diferencias significativas en la cantidad de egresados
 entre instituciones estatales y privadas en la misma carrera? **CAMI G, DIF. ENTRE Q EN PRIV Y PUB, PERO NO SEGUN CARRERAR**
