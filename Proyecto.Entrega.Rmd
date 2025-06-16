@@ -296,6 +296,7 @@ grafico_comparativo <- ggplot(df_comparativo2, aes(x = Genero2, y = Total2, fill
 grafico_comparativo
 ```
 
+A partir de este gráfico, se aprecia que el comportamiento de la cantidad de graduados en relación al género se replica tanto en universidades privadas como públicas, en donde en ambas las mujeres predominan en la cantidad de egresados. Es interesante notar que la cantidad de egresadas mujeres provenientes de universidades privadas incluso supera a la cantidad de egresados varones provenientes de universidades públicas.
 
 
 ### ¿Cómo afecta la modalidad de estudio a la cantidad de egresados? 
