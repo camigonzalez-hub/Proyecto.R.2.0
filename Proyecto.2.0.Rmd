@@ -564,7 +564,7 @@ cat(paste0("Entre 2021 y 2023, el total de egresados pasó de ", egresados$Total
 cat("En resumen, el gráfico de barras nos permite visualizar claramente que el año 2021 fue el de mayor cantidad de egresados, mientras que en 2020 y 2023 el número total fue exactamente el mismo. Esta oscilación puede reflejar variaciones en cohortes, políticas educativas o condiciones externas como la pandemia.\n")
 ```
 
-### Cómo afecta a la cantidad de graduados el nivel academico de sus padres ?
+### ¿Cómo afecta a la cantidad de graduados el nivel academico de sus padres?
 
 
 ``` {r madres_/graduados, message=FALSE, warning=FALSE}
@@ -648,9 +648,9 @@ ggplot(comparativo, aes(x = reorder(Nivel_academico, -Cantidad), y = Cantidad, f
 ```
 
 
-Como podemos observar en el grafico de barras el nivel de academico de los padres es crucial en la cantidad de graduados!
+Como podemos observar en el grafico de barras el nivel academico de los padres es crucial en la cantidad de graduados.
 
 ## Conclusión:
 A partir del análisis realizado hemos podido identificar una serie de factores que influyen
-en la cantidad de egresados en los años 2020, 2021 y 2023. Dentro de estos, pudimos observar que la mayor presencia de egresados bajo la modalidad virtual se da en universidades privadas, lo cual evidencia una ventaja concreta para quienes necesitan flexibilidad y pueden afrontar los gastos, pero un problema para aquellos que no pueden afrontarlos, teniendo en cuenta que las universidades públicas no ofrecen en gran medida esta modalidad.  Otro de los factores ha sido el nivel educativo de los padres, donde a mayor nivel educativo en la familia, mayor es la cantidad de graduados. Por otro lado, en base a los análisis realizados, pudimos notar que las carreras elegidas por los graduados no están relacionadas con las ciencias exactas sino con las ciencias sociales, y además, la mayor incidencia en la cantidad pertenece a las mujeres, de manera general. También pudimos notar, que durante la pandemia decayó la cantidad de egresados a nivel general y que a partir del año 2021 creció drásticamente la cantidad de reinscriptos también a nivel general. 
+en la cantidad de egresados en los años 2020, 2021 y 2023. Dentro de estos, pudimos observar que la mayor presencia de egresados bajo la modalidad virtual se da en universidades privadas, lo cual evidencia una ventaja concreta para quienes necesitan flexibilidad y pueden afrontar los gastos, pero un problema para aquellos que no pueden afrontarlos, teniendo en cuenta que las universidades públicas no ofrecen en gran medida esta modalidad.  Otro de los factores ha sido el nivel educativo de los padres, donde a mayor nivel educativo en la familia, mayor es la cantidad de graduados. Por otro lado, en base a los análisis realizados, pudimos notar que las carreras elegidas por los graduados no están relacionadas con las ciencias exactas sino con las ciencias sociales. Además, la mayor incidencia en la cantidad pertenece a las mujeres, de manera general. A su vez, pudimos notar, que durante la pandemia decayó la cantidad de egresados a nivel general y que a partir del año 2021 creció drásticamente la cantidad de reinscriptos también a nivel general. 
 
