@@ -45,7 +45,7 @@ Estas fuentes permiten analizar los factores que influyen en la *tasa de egreso 
 
 -   Cómo varía la cantidad de egresados empleados, dependiendo de la cantidad de ingresantes con o sin empleo. 
 
-## Análisis exploratorio (algunas preguntas las vamos a sacar porque son muchas) 
+## Análisis exploratorio 
 
 - ¿Qué carreras tienen mayor y menor cantidad de egresados? **CAMI G, SOLO MAYOR CANTIDAD**
 
