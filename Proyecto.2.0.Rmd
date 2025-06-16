@@ -40,6 +40,8 @@ Estas fuentes permiten analizar los factores que influyen en la *tasa de egreso 
 - ¿Existen diferencias significativas en la cantidad de egresados
 entre instituciones estatales y privadas ? **CAMI G, DIF. ENTRE Q EN PRIV Y PUB, PERO NO SEGUN CARRERAR**
 
+- ¿Cómo varió la cantidad de egresados totales en 2020, 2021 y 2023? **Mauri**
+
 - ¿Cómo varió la cantidad de reinscriptos en Universidades Nacionales entre los años 2020, 2021 y 2023? Lu
 
 - ¿Hubo diferencias en la cantidad de egresados en Universidades Nacionales y Provinciales durante los años 2021 y 2023? Lu
@@ -50,6 +52,7 @@ entre instituciones estatales y privadas ? **CAMI G, DIF. ENTRE Q EN PRIV Y PUB,
 
 - ¿Cómo afecta en la cantidad de graduados el nivel de academico de los padres? **luca**
 
+- ¿Qué diferencias existen en la cantidad de egresados entre modalidad virtual y presencial? **Cami G** 
 
 ## Justificación de la elección del dataset
 
