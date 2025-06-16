@@ -71,6 +71,8 @@ entre instituciones estatales y privadas en la misma carrera? **CAMI G, DIF. ENT
 
 - ¿Qué rango de edad tiene más egresados?
 
+- ¿Cómo afecta en la cantidad de graduados el nivel de academico de los padres? **luca**
+
 - ¿Cómo varía la cantidad que inscriptos que trabajan en universidades privadas y públicas? Puede esto afectar la tasa de egreso en cada una?
 
 
@@ -539,5 +541,90 @@ cat(paste0("Entre 2021 y 2023, el total de egresados pasó de ", egresados$Total
 cat("En resumen, el gráfico de barras nos permite visualizar claramente que el año 2021 fue el de mayor cantidad de egresados, mientras que en 2020 y 2023 el número total fue exactamente el mismo. Esta oscilación puede reflejar variaciones en cohortes, políticas educativas o condiciones externas como la pandemia.\n")
 ```
 
+## Cómo afecta a la cantidad de graduados el nivel academico de sus padres ?
+
+
+``` {r madres_/graduados, message=FALSE, warning=FALSE}
+#llamamos a las librarias que podemos llegar a utilizar
+library(readxl)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+
+
+# nivel academico de la madre del graduado
+nivel_madre <- read_excel("2.1 Pregrado y Grado Gestión Estatal 2023.xlsx", sheet = "C.2.1.32", skip=4 )
+
+#reorganizamos y filtramos el dataset
+colnames(nivel_madre)[1] <- "Institucion"
+nivel_madre_limpio <- nivel_madre %>%
+  
+  filter(Institucion == "Total Universidades Nacionales") %>%
+  pivot_longer(
+    cols = -Institucion,
+    names_to = "Nivel_academico",
+    values_to = "Cantidad") %>%
+  
+  mutate(
+    Cantidad = as.numeric(Cantidad),
+    Nivel_academico_sesgo = trimws(tolower(Nivel_academico)),
+    Padre_Madre = "Madre") %>%
+  
+#limpiamos las columnas que no nos interesan
+  filter(!Nivel_academico_sesgo %in% c("total", "no sabe", "ndi"))
+```
+
+``` {r padres_/graduados, message=FALSE, warning=FALSE}
+
+library(readxl)
+library(dplyr)
+library(tidyr)
+
+# nivel academico del Padre del graduado
+
+#primer paso leemos el dataset y llamamos nuestra hoja correspondiente.
+nivel_padre <- read_excel("2.1 Pregrado y Grado Gestión Estatal 2023.xlsx", sheet = "C.2.1.33", skip=4 )
+colnames(nivel_padre)[1] <- "Institucion"
+nivel_padre_limpio <- nivel_padre %>%
+  filter(Institucion == "Total Universidades Nacionales") %>%
+  pivot_longer(
+    cols = -Institucion,
+    names_to = "Nivel_academico",
+    values_to = "Cantidad"
+  ) %>%
+  mutate(
+    Cantidad = as.numeric(Cantidad),
+    Nivel_academico_sesgo = trimws(tolower(Nivel_academico)),
+    Padre_Madre = "Padre") %>%
+  filter(!Nivel_academico_sesgo %in% c("total", "no sabe", "ndi"))
+```
+
+# 📊 Unimos los dos codigos para luego graficar la comparacion ver juntos ambos resultados
+
+``` {r comparación, message=FALSE, warning=FALSE}
+library(readxl)
+library(dplyr)
+library(tidyr)
+
+#asignamos la comparación
+
+comparativo <- bind_rows(nivel_madre_limpio, nivel_padre_limpio)
+
+# Gráficamos 
+ggplot(comparativo, aes(x = reorder(Nivel_academico, -Cantidad), y = Cantidad, fill = Padre_Madre)) +
+  geom_col(position = "dodge") +
+  geom_text(aes(label = Cantidad), position = position_dodge(width = 0.9), vjust = -0.3, size = 3) + 
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(
+    title = "Nivel academico del padre y la madre del graduado - Universidades Nacionales (2023)",
+    x = "Nivel academico",
+    y = "Cantidad de egresados",
+    fill = "padre y madre"
+  )
+```
+
+
+# Como podemos observar en el grafico de barras el nivel de acedemico de los padres es crucial en la cantidad de graduados!
 
 
