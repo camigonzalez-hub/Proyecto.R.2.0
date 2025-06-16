@@ -150,6 +150,9 @@ ggplot(datosxcarrera, aes(x = reorder(Carrrera, -graduadosxcarrera),
   theme(plot.title = element_text(size = 16, hjust = 0.5))
 ```
 
+Como podemos ver, las carreras más elegidas son aquellas pertenecientes a las ciencias sociales y no a las ciencias exactas. La razón de esto se puede deber al bajo nivel matemático que poseen los estudiantes de la educación básica (primaria y secundaria). Según las Pruebas Aprender realizadas cada año, en el 2024, solo el 14,2% de los estudiantes alcanzó un nivel satisfactorio en matemáticas. Por lo tanto, no es sorpresa que las carreras de ciencias exactas no sean las más elegidas. 
+
+
 ### RELACION GÉNERO - CANTIDAD DE GRADUADOS - TIPO DE INSTITUCIÓN
 
 A continuación, realizamos un pequeño análisis respecto a la cantidad de egresados, su género (mujer u hombre) y el tipo de institucion de la cual proviene, ya sea universidad pública o privada. El objetivo de esto es ver si hay más egresados del género femenino o masculino.
