@@ -55,7 +55,7 @@ entre instituciones estatales y privadas ?
 
 El dataset de los "Anuarios Estadísticos" del sistema universitario es la fuente más adecuada para estudiar la evolución en diversas áreas, las causas de ello y diferencias en la tasa de egreso universitaria en Buenos Aires. Además la información es confiable porque es oficial, completa, accesible, comparable entre años, y centrada en variables directamente vinculadas al fenómeno de estudio.
 
-Además, elegimos el dataset “Universidades - egresados” del proyecto Argentina en datos (Chequeado) porque permite entender cómo factores como la pobreza, la desocupación o el acceso a internet (hasta el año 2020) influyen en que una persona pueda terminar sus estudios o no. Detrás de cada egresado, y sobre todo de cada abandono, hay relidades desiguales que este dataset ayuda a visibilizar.
+Además, elegimos el dataset “Universidades – egresados” del proyecto Argentina en datos (Chequeado) porque ofrece información clara sobre cuántas personas lograron finalizar sus estudios universitarios en Argentina hasta el año 2020. Al estar organizado por institución y tipo de gestión, permite observar diferencias entre universidades y regiones del país. Es una herramienta valiosa para reflexionar sobre cómo se distribuyen las oportunidades de egreso, entendiendo que cada número representa una historia atravesada por contextos muy distintos.
 
 ### Cantidad de graduados según tipo de institución
 
