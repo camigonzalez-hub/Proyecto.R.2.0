@@ -10,22 +10,8 @@ always_allow_html: true
 ---
 # INTRODUCCIóN
 
-## Opción 1
-El trabajo se basa en el análisis de datos provenientes de dos fuentes de datos principales que recopilan y publican estadísticas del sistema universitario argentino:
 
-1  **Anuarios de Estadísticas Universitarias del Ministerio de Educación de la Nación:**
- Publicados en el portal oficial del Ministerio de Educación de la Nación Argentina (argentina.gob.ar/educacion/universidades), estos anuarios reúnen información cuantitativa sobre las universidades públicas y privadas del país. Los datos incluyen variables como cantidad de ingresantes, reinscriptos y egresados, área disciplinar, modalidad, género y otros factores relevantes. Esta fuente es una herramienta clave para el análisis y la planificación de políticas educativas a nivel superior.
-
-
-2  **Encuesta sobre Condiciones de Ingreso a la Universidad (ECIU**):
-  Se utiliza una base de datos derivada de la ECIU, difundida a través de una hoja de cálculo compartida públicamente (Google Sheets). Esta encuesta recopila información cualitativa y cuantitativa sobre los estudiantes al momento de ingresar a la universidad, incluyendo variables como si trabajan, si tienen personas a cargo, el nivel educativo de los padres, entre otras dimensiones socioeconómicas y demográficas. Esta información resulta útil para explorar posibles factores asociados a la retención y egreso de los estudiantes.
-
-
-Ambas fuentes son de gran relevancia institucional y social, ya que permiten conocer en profundidad la dinámica del sistema universitario argentino. En particular, su análisis contribuye a comprender los **factores que inciden en la tasa de egreso universitaria**, temática central de este trabajo.
-
-## Opción 2 (muy breve)
-
-Este trabajo utiliza datos del **Ministerio de Educación de la Nación Argentina**, extraídos de los Anuarios de Estadísticas Universitarias, y de una base complementaria proveniente de la **Encuesta sobre Condiciones de Ingreso a la Universidad (ECIU)**.
+ Este trabajo utiliza datos del **Ministerio de Educación de la Nación Argentina**, extraídos de los Anuarios de Estadísticas Universitarias, y de una base complementaria proveniente de la **Encuesta sobre Condiciones de Ingreso a la Universidad (ECIU)**.
 Los datasets incluyen información sobre **ingresantes, reinscriptos y egresados** en universidades públicas y privadas del país, desagregada por *carrera, área disciplinar, género, edad, modalidad de estudio y situación laboral*.
 Estas fuentes permiten analizar los factores que influyen en la *tasa de egreso universitaria*, como el tipo de institución, la disciplina académica, y las condiciones socioeconómicas de los estudiantes
 
