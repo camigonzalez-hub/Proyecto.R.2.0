@@ -1,23 +1,23 @@
 ---
-title: "<u> Investigacion sobre las universidades </u>"
+title: "<u> Investigacion Sobre las Universidades y sus Egresados </u>"
 author: "INTEGRANTES: Camila Gonzalez, Luciana Parallela, Camila Rondon, Mauricio Medina, Lucas Colosimo"
-date: "**Recolección De Datos**"
+date: "**Recolección De Datos y Análisis Primario de la Información**"
 output:
   html_document: default
   pdf_document:
     latex_engine: xelatex
 always_allow_html: true
 ---
-# INTRODUCCIÓN
 
+### Introducción
 
  Este trabajo utiliza datos del **Ministerio de Educación de la Nación Argentina**, extraídos de los Anuarios de Estadísticas Universitarias, y de una base complementaria proveniente de la **Encuesta sobre Condiciones de Ingreso a la Universidad (ECIU)**.
 Los datasets incluyen información sobre **ingresantes, reinscriptos y egresados** en universidades públicas y privadas del país, desagregada por *carrera, área disciplinar, género, edad, modalidad de estudio y situación laboral*.
 Estas fuentes permiten analizar los factores que influyen en la *tasa de egreso universitaria*, como el tipo de institución, la disciplina académica, y las condiciones socioeconómicas de los estudiantes
 
-## Definición de los objetivos del analisís
+## Definición de los objetivos del analisis
 
-#### La *problemática* que hemos elegido para el presente trabajo se basa en los factores que hacen que haya menor o mayor tasa de egresados en las universidades de Buenos Aires. En base a esta problemática y a partir de los data sets seleccionados y a su respectivo análisis, hemos elegido los siguientes factores a analizar:
+ La *problemática* que hemos elegido para el presente trabajo se basa en los factores que hacen que haya menor o mayor tasa de egresados en las universidades de Buenos Aires. En base a esta problemática y a partir de los data sets seleccionados y a su respectivo análisis, hemos elegido los siguientes factores a analizar:
 
 -   Cuál es la diferencia en cantidad de graduados en instituciones públicas o privadas.
 
@@ -25,13 +25,10 @@ Estas fuentes permiten analizar los factores que influyen en la *tasa de egreso 
 
 -   Carreras que tienen mmayor cantidad de egresados.
 
--  **Carreras con mayor y menor retención estudiantil (Con mayor egresados/retención son abogacía, contador público y enfermería; con menor retención (más cantidad de ingresantes pero menor cantidad de egresados).**
-
 -   Cómo varía la cantidad de graduados según su género.
 
--   **Cómo varía la cantidad de egresados empleados, dependiendo de la cantidad de ingresantes con o sin empleo.** 
-
-## Análisis exploratorio 
+## Análisis exploratorio
+Hemos formulado las siguientes preguntas claves que iremos respondiendo a través del trabajo, estas nos permitirán tener un buen panoráma de la situación de los egresados.
 
 - ¿Qué carreras tienen mayor cantidad de egresados?
 
@@ -514,7 +511,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(ggplot2)
 ```
 
-## 📊 Datos de egresados
+### 📊 Datos de egresados
 
 ```{r}
 egresados <- data.frame(
@@ -525,7 +522,7 @@ egresados <- data.frame(
 egresados
 ```
 
-## 📈 Cálculo de cambios entre años
+### 📈 Cálculo de cambios entre años
 
 ```{r}
 egresados$Cambio_Absoluto <- c(NA, diff(egresados$Total))
@@ -534,7 +531,7 @@ egresados$Cambio_Porcentaje <- c(NA, round((diff(egresados$Total) / head(egresad
 egresados
 ```
 
-## 📊 Gráfico comparativo de egresados
+### 📊 Gráfico comparativo de egresados
 
 ```{r}
 ggplot(egresados, aes(x = factor(Año), y = Total, fill = factor(Año))) +
@@ -547,7 +544,7 @@ ggplot(egresados, aes(x = factor(Año), y = Total, fill = factor(Año))) +
   geom_text(aes(label = Total), vjust = -0.5)
 ```
 
-## 🧾 Interpretación
+### 🧾 Interpretación
 
 ```{r results='asis', echo=FALSE}
 cat("### Análisis del cambio en el número total de egresados\n\n")
@@ -565,7 +562,7 @@ cat(paste0("Entre 2021 y 2023, el total de egresados pasó de ", egresados$Total
 cat("En resumen, el gráfico de barras nos permite visualizar claramente que el año 2021 fue el de mayor cantidad de egresados, mientras que en 2020 y 2023 el número total fue exactamente el mismo. Esta oscilación puede reflejar variaciones en cohortes, políticas educativas o condiciones externas como la pandemia.\n")
 ```
 
-## Cómo afecta a la cantidad de graduados el nivel academico de sus padres ?
+### Cómo afecta a la cantidad de graduados el nivel academico de sus padres ?
 
 
 ``` {r madres_/graduados, message=FALSE, warning=FALSE}
@@ -623,7 +620,7 @@ nivel_padre_limpio <- nivel_padre %>%
   filter(!Nivel_academico_sesgo %in% c("total", "no sabe", "ndi"))
 ```
 
-# 📊 Unimos los dos codigos para luego graficar la comparacion ver juntos ambos resultados
+### 📊 Unimos los dos codigos para luego graficar la comparacion ver juntos ambos resultados
 
 ``` {r comparación, message=FALSE, warning=FALSE}
 library(readxl)
@@ -649,6 +646,6 @@ ggplot(comparativo, aes(x = reorder(Nivel_academico, -Cantidad), y = Cantidad, f
 ```
 
 
-# Como podemos observar en el grafico de barras el nivel de academico de los padres es crucial en la cantidad de graduados!
+Como podemos observar en el grafico de barras el nivel de academico de los padres es crucial en la cantidad de graduados!
 
-
+## Conclusión: 
