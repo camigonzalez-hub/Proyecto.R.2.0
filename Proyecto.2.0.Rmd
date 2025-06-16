@@ -1,12 +1,10 @@
 ---
-title:  "<u> Investigacion sobre las universidades </u>"
-
-author: "INTEGRANTES: Camila Gonzalez, Luciana Parallela
-Camila Rondon, Mauri, Lucas Colosimo"
-
-date: "**Recolección De Datos**"
-
-output: 
+title: "<u> Investigacion sobre las universidades </u>"
+author: 'INTEGRANTES: Camila Gonzalez, Luciana Parallela, Camila Rondon, Mauricio
+  Medina, Lucas Colosimo'
+date: '**Recolección De Datos**'
+output:
+  pdf_document: default
   html_document: default
 ---
 # INTRODUCCIóN
@@ -34,7 +32,7 @@ Estas fuentes permiten analizar los factores que influyen en la *tasa de egreso 
 
 #### La *problemática* que hemos elegido para el presente trabajo se basa en los factores que hacen que haya menor o mayor tasa de egresados en las universidades de Buenos Aires. En base a esta problemática y a partir de los data sets seleccionados y a su respectivo análisis, hemos elegido los siguientes factores a analizar:
 
--   Cuál es la diferencia en cantidad de graduados en instituciones públicas o privadas (tanto a nivel general y en carreras específicas.
+-   Cuál es la diferencia en cantidad de graduados en instituciones públicas o privadas (tanto a nivel general y en carreras específicas).
 
 -   Cómo varía la cantidad de egresados s/ área disciplinar (Área de ingeniería tiene más egresados que en otras áreas). (Gráfico de torta o barras: eje x: área disciplinar, eje y: cantidad de egresados)
 
@@ -42,18 +40,18 @@ Estas fuentes permiten analizar los factores que influyen en la *tasa de egreso 
 
 -   Carreras con mayor y menor retención estudiantil (Con mayor egresados/retención son abogacía, contador público y enfermería; con menor retención (más cantidad de ingresantes pero menor cantidad de egresados).
 
--   Cómo varía la cantidad de graduados según su edad y género.
+-   Cómo varía la cantidad de graduados según su edad y género. **CAMI G, SOLO GENERO **
 
 -   Cómo varía la cantidad de egresados empleados, dependiendo de la cantidad de ingresantes con o sin empleo. 
 
 ## Análisis exploratorio (algunas preguntas las vamos a sacar porque son muchas) 
 
-- ¿Qué carreras tienen mayor y menor cantidad de egresados? 
+- ¿Qué carreras tienen mayor y menor cantidad de egresados? **CAMI G, SOLO MAYOR CANTIDAD**
 
-- ¿Cómo varía la cantidad de egresados por área disciplinar?
+- ¿Cómo varía la cantidad de egresados por área disciplinar? **CAMI R (CUADRO Y OJIVA)**
 
 - ¿Existen diferencias significativas en la cantidad de egresados
-entre instituciones estatales y privadas en la misma carrera?
+entre instituciones estatales y privadas en la misma carrera? **CAMI G, DIF. ENTRE Q EN PRIV Y PUB, PERO NO SEGUN CARRERAR**
 
 - Cómo cambió el número total de egresados entre 2020, 2021, 2023?
 
@@ -69,9 +67,11 @@ entre instituciones estatales y privadas en la misma carrera?
 
 - ¿Cómo cambió a lo largo del tiempo la modalidad elegida y su cantidad de graduados? 
 
-- ¿Qué género tiene mayor cantidad de graduados, son más hombres o mujeres? 
+- ¿Qué género tiene mayor cantidad de graduados, son más hombres o mujeres? **CAMI G**
 
 - ¿Qué rango de edad tiene más egresados?
+
+- ¿Cómo afecta en la cantidad de graduados el nivel de academico de los padres? **luca**
 
 - ¿Cómo varía la cantidad que inscriptos que trabajan en universidades privadas y públicas? Puede esto afectar la tasa de egreso en cada una?
 
@@ -80,15 +80,18 @@ entre instituciones estatales y privadas en la misma carrera?
 
 El dataset de los "Anuarios Estadísticos" del sistema universitario es la fuente más adecuada para estudiar la evolución en diversas áreas, las causas de ello y diferencias en la tasa de egreso universitaria en Buenos Aires. Además la información es confiable porque es oficial, completa, accesible, comparable entre años, y centrada en variables directamente vinculadas al fenómeno de estudio.
 
+### Cantidad de graduados según tipo de institución
 
- 
-```{r Camila_gonzalez , warning=FALSE , message= FALSE}
+Se analiza la **diferencia entre cantidad de graduados provenientes de universidades públicas y universidades privadas**, el objetivo es ver cuál tipo proporciona una mayor cantidad de graduados a nivel nacional, podremos ver estas diferencias representadas en el siguiente gráfico:
+
+
+```{r Camila_gonzalez 1 , warning=FALSE , message= FALSE, echo=FALSE }
 # CUAL ES LA DIFERENCIA ENTRE CANTIDAD DE GRADUADOS EN UNIVERSIDADES PUBLICAS Y PRIVADAS - CAMI CON EL DE CHEQUEADO
 library(readxl)
 datos_chequeado <- read_excel("Universidades - egresados.xlsx")
 library(tidyverse)
 
-#ESTE CUENTA LA CANTIDAD DE EGRESADOS DE UNIVERSIDADES PRIVADAS
+#Esto se encarga de filtrar la cantidad de egresados en universidades privadas
 egresados_privadas <-  datos_chequeado %>%
   filter(`Año Informado` == 2020,
          `Régimen` == "Privado",
@@ -96,7 +99,7 @@ egresados_privadas <-  datos_chequeado %>%
    summarise(total_egresados_privadas = sum(Egresados, na.rm = TRUE)) %>%
   pull(total_egresados_privadas)
 
-# ESTE CUENTA LA CANTIDAD DE EGRESADOS EN UNIVERSIDADES ESTATALES
+# sto se encarga de filtrar la cantidad de egresados en universidades ESTATALES
 egresados_estatales <- datos_chequeado %>%
   filter(`Año Informado` == 2020,
          `Régimen` == "Estatal",
@@ -108,7 +111,7 @@ egresados_estatales <- datos_chequeado %>%
 library(tidyverse)
 library(ggplot2)
 
-# GRAFICO DE BARRAS QUE COMPARA LA CANTIDAD DE EGRESADOS DE UNIVERSIDADES PUBLICAS VS PRIVADAS
+# Aca creo el data frame para crear el grafico
 df <- data.frame(
   Egresados_2020 = c("Egresados estatales","Egresados Privados"),
   Cantidad = c(egresados_estatales , egresados_privadas)
@@ -117,6 +120,7 @@ df <- data.frame(
 # GRAFICO SOBRE TOTAL DE EGRESADOS DE PRIVADAS VS PUBLICAS
 ggplot(df, aes(x = Egresados_2020, y = Cantidad, fill = Egresados_2020)) + 
   geom_bar(stat = "identity") + 
+  geom_text(aes(label = Cantidad), vjust = -0.5, size = 5) +
   scale_fill_manual(values = c("lightpink2", "lightblue3")) +
   labs(
     title = "Cantidad de graduados según tipo de institución",
@@ -126,16 +130,19 @@ ggplot(df, aes(x = Egresados_2020, y = Cantidad, fill = Egresados_2020)) +
   ) +
   theme_minimal() +
   theme(plot.title = element_text(size = 16, hjust = 0.5))
+```
+
+### TOP 10 CARRERAS CON MÁS GRADUADOS
+Para ampliar la información, nos hemos preguntado ¿ cuáles son las carreras con más cantidad de graduados? para responder a ello, hemos escogido las **top 10 carreras con más cantidad de graduados** y hemos adicionado el total por cada una de ellas, esto es a nivel nacional, según datos del 2020.
 
 
-
+```{r Camila_gonzalez2 , warning=FALSE , message= FALSE, echo=FALSE }
 #cantidad de graduados por carrera
 graduadosxcarrera<- datos_chequeado %>%
   filter(`Año Informado` == 2020,)%>%
   arrange(desc(Egresados))%>%
   slice(2:11)%>%
   pull("Egresados")
-print(graduadosxcarrera)
 
 
 datosxcarrera <- datos_chequeado %>%
@@ -145,7 +152,6 @@ datosxcarrera <- datos_chequeado %>%
   summarise(graduadosxcarrera = sum(Egresados)) %>%
   arrange(desc(graduadosxcarrera)) %>%
   slice(1:10)  # Top 10 carreras
-print(datosxcarrera)
 
 #GRAFICO DE CANTIDAD DE TOP CARRRERAS CON MAS GRADUADOS
 library(RColorBrewer)
@@ -166,8 +172,149 @@ ggplot(datosxcarrera, aes(x = reorder(Carrrera, -graduadosxcarrera),
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 40, hjust = 1)) +
   theme(plot.title = element_text(size = 16, hjust = 0.5))
+```
 
-``` 
+### RELACION GÉNERO - CANTIDAD DE GRADUADOS - TIPO DE INSTITUCIÓN
+
+A continuación, realizamos un pequeño análisis respecto a la cantidad de egresados, su género (mujer u hombre) y el tipo de institucion de la cual proviene, ya sea universidad pública o privada. El objetivo de esto es ver si hay más egresados del género femenino o masculino.
+El primer gráfico que veremos será aquel proveniente de las **universidades públicas**:
+
+
+``` {r Camila_gonzalez3 , warning=FALSE , message= FALSE, echo=FALSE}
+#De aca obtengo los datos
+data_2023 <- read_excel("2.1 Pregrado y Grado Gestión Estatal 2023.xlsx", sheet ="C2.1.5b",skip=2)
+
+# En el siguiente grafico demuestro la distribucion por genero de los egresados en las universidades PUBLICAS 
+#Defino las variables (los datos los obtuve directamente del anuario, alli se encuentran ya detallados)
+#Los podemos ver en el excel "2.1 Pregrado y Grado Gestión Estatal 202" hoja:"C2.1.5 
+total_egresados_publicas <- 88288
+mujeres_porcentaje_publicas <- 63.4
+varones_porcentaje_publicas <- 36.6
+
+#Obtengo el total real a partir de los datos del porcentaje
+total_mujeres_publicas <- (total_egresados_publicas * mujeres_porcentaje_publicas)/100
+total_varones_publicas <- (total_egresados_publicas * varones_porcentaje_publicas)/100
+
+
+#creo el data frame que me va a permitir crear el grafico
+df_porcentajes_publicas <- data.frame(
+  Genero_publicas = c("Mujeres","Varones"),
+  Porcentaje_publicas = c(mujeres_porcentaje_publicas,varones_porcentaje_publicas),
+  Total_publicas = c(total_mujeres_publicas,total_varones_publicas)
+) %>%
+  mutate(
+    Etiqueta_publicas = paste0(Genero_publicas, "\n", Porcentaje_publicas, "%  (", round(Total_publicas), ")")
+  )
+
+# ACA CREO EL GRAFICO DE PORCIONES PARA VER LA DISTRIBUCION X GENERO EN UNIVERSIDADES PUBLICAS
+distribucion_publicas <- ggplot(df_porcentajes_publicas,aes( x = "", y = Porcentaje_publicas, fill = Genero_publicas)) +
+   geom_bar(stat = "identity", width = 1) +
+   coord_polar("y") +
+   geom_text(aes(label = Etiqueta_publicas),
+            position = position_stack(vjust = 0.5),
+            color = "Black", size = 5) +
+   scale_fill_manual(values = c("lightpink", "lightblue")) +
+   labs(title = "Distribución de Egresados por Género \n Universidades Publicas - Año 2023") +
+   theme_void() +
+   theme(plot.title = element_text(hjust = 0.5, size = 16),
+         legend.position = "none")
+     
+#Con esto podemos ejecutar el grafico directamente
+distribucion_publicas
+```
+
+A continuación, el gráfico relacionado a las **universidades privadas**:
+
+
+``` {r Camila_gonzalez4 , warning=FALSE , message= FALSE, echo=FALSE}
+
+# ------- PARA LAS UNIVERSIDADES PRIVADAS
+
+total_egresados_privadas <- 50894
+mujeres_porcentaje_privadas <- 64.7
+varones_porcentaje_privadas <- 35.3
+
+total_mujeres_privadas <- (total_egresados_privadas * mujeres_porcentaje_privadas)/100
+total_varones_privadas <- (total_egresados_privadas * varones_porcentaje_privadas)/100
+
+df_porcentajes_privadas <- data.frame(
+  Genero_privadas = c("Mujeres","Varones"),
+  Porcentaje_privadas = c(mujeres_porcentaje_privadas,varones_porcentaje_privadas),
+  Total_privadas = c(total_mujeres_privadas,total_varones_privadas)
+) %>%
+  mutate(
+    Etiqueta_privadas = paste0(Genero_privadas, "\n", Porcentaje_privadas, "%  (", round(Total_privadas), ")")
+  )
+
+# ACA CREO EL GRAFICO DE PORCIONES PARA VER LA DISTRIBUCION X GENERO EN UNIVERSIDADES PUBLICAS
+distribucion_privadas <- ggplot(df_porcentajes_privadas,aes( x = "", y = Porcentaje_privadas, fill = Genero_privadas)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar("y") +
+  geom_text(aes(label = Etiqueta_privadas),
+            position = position_stack(vjust = 0.5),
+            color = "White", size = 5) +
+  scale_fill_manual(values = c("deeppink", "blue")) +
+  labs(title = "Distribución de Egresados por Género \n Universidades Privadas - Año 2023") +
+  theme_void() +
+  theme(plot.title = element_text(hjust = 0.5, size = 16),
+        legend.position = "none")
+
+#CON ESTO EJECUTO EL GRAFICO
+distribucion_privadas
+
+```
+
+Por último, el siguiente gráfico es una pequeña **comparación de la cantidad de egresados según género y tipo de universidad**, como podemos apreciar, hay una mayor cantidad de graduadas mujeres, y este patrón se da tanto en universidades públicas como privadas:
+
+
+``` {r Camila_gonzalez5 , warning=FALSE , message= FALSE, echo=FALSE}
+
+# ---- GRAFICO COMPARATIVO 
+
+#LOS DATOS QUE TENIAMOS ANTES SOLO QUE REDONDEADOS
+
+total_mujeres_publicas2 <- round((total_egresados_publicas * mujeres_porcentaje_publicas)/100)
+total_varones_publicas2 <- round((total_egresados_publicas * varones_porcentaje_publicas)/100)
+total_mujeres_privadas2 <- round((total_egresados_privadas * mujeres_porcentaje_privadas)/100)
+total_varones_privadas2 <- round((total_egresados_privadas * varones_porcentaje_privadas)/100)
+
+
+
+# CREO EL DATAFRAME CON LOS DATOS QUE VOY A USAR EN EL GRAFICO
+df_comparativo2 <- data.frame(
+  Genero2 = c("Mujeres", "Mujeres", "Varones", "Varones"),
+  Tipo2 = c("Pública", "Privada", "Pública", "Privada"),
+  Total2 = c(total_mujeres_publicas2, total_mujeres_privadas2, total_varones_publicas2, total_varones_privadas2),
+  Grupo2 = c("Mujeres Pública", "Mujeres Privada", "Varones Pública", "Varones Privada"),
+  colores_por_grupo2 <- c( "Mujeres Pública" = "lightpink", "Mujeres Privada" = "deeppink",
+                           "Varones Pública" = "lightblue", "Varones Privada" = "blue" )
+)
+
+# creo el grafico comparativo
+grafico_comparativo <- ggplot(df_comparativo2, aes(x = Genero2, y = Total2, fill = Grupo2)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.7), width = 0.6) +
+  geom_text(aes(label = Total2), position = position_dodge(width = 0.7),vjust = -0.5, size = 4) +
+  scale_fill_manual(values = colores_por_grupo2,labels = c(
+      "Mujeres Pública" = "Universidad Pública",
+      "Mujeres Privada" = "Universidad Privada",
+      "Varones Pública" = "Universidad Pública",
+      "Varones Privada" = "Universidad Privada"
+    ),
+    name = "Referencias") +
+  labs(
+    title = "Egresados por Género y Tipo de Universidad - 2023",
+    x = "Género",
+    y = "Total de Egresados") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 16),
+    axis.text.x = element_text(size = 12)
+)
+    
+
+#CON ESTO EJECUTO EL GRAFICO
+grafico_comparativo
+```
 
 
 ### Reinscriptos en universidades nacionales de gestión estatal
@@ -281,10 +428,203 @@ ggplot(egresados_comparados, aes(x = factor(año), y = Egresados, fill = tipo)) 
   theme_minimal()
 ```
 
+### ¿Cómo varía la cantidad de egresados por área disciplinar?
 
-# VES ESTO?
+A partir de los datos recolectados, se puede observar que la cantidad de egresados varía bastante según el área disciplinar. Algunas áreas, como *Ciencias de la Salud: Medicina*, tienen una cantidad muy alta de egresados tanto en universidades estatales como privadas, lo que indica una fuerte presencia en el sistema educativo. En cambio, áreas como *Arquitectura y Diseño* o *Biología* tienen cifras más bajas.
+
+También se nota que en ciertas disciplinas, como *Economía y Administración*, el número de egresados en la gestión privada es incluso mayor que en la estatal. Este tipo de diferencias nos ayudan a entender cómo se distribuyen los egresos en función del tipo de institución y del interés que despierta cada carrera.
+
+```{r cargar-cuadro, echo=FALSE, message=FALSE, warning=FALSE}
+# Cargar paquetes
+library(readr)
+library(knitr)
+library(kableExtra)
+
+# Leer los datos del archivo CSV
+egresados <- read_csv("datos_originales_para_R.csv")
+
+# Mostrar la tabla con estilo
+kable(egresados, format = "html", caption = "Cantidad de egresados por área disciplinar (2020-2022)") %>%
+  kable_styling(full_width = FALSE, bootstrap_options = c("striped", "hover"))
+```
+
+### Ojiva
+
+```{r}
+library(dplyr)
+library(ggplot2)
+
+# Aseguramos que la columna Total sea numérica
+egresados <- egresados %>%
+  mutate(Total = as.numeric(Total)) %>%
+  arrange(Total) %>%
+  mutate(FrecuenciaAcumulada = cumsum(Total))
+
+# Creamos el Ojiva
+ggplot(egresados, aes(x = reorder(`Rama y disciplina`, Total), y = FrecuenciaAcumulada, group = 1)) +
+  geom_line(color = "steelblue", size = 1.2) +
+  geom_point(color = "steelblue", size = 2) +
+  labs(
+    title = "Ojiva: Frecuencia acumulada de egresados por área disciplinar",
+    x = "Área disciplinar (ordenada por total)",
+    y = "Frecuencia acumulada"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
+### Interpretación de la ojiva
+
+La ojiva permite visualizar cómo se acumula el total de egresados por área disciplinar. Al ordenar las disciplinas de menor a mayor según su cantidad de egresados, observamos que unas pocas áreas concentran una gran parte del total acumulado. Por ejemplo, Ciencias de la Salud: Medicina aporta un incremento considerable en la curva, mientras que disciplinas como Arquitectura y Diseño o Biología generan un aumento más gradual.
+
+Este tipo de representación es útil porque permite identificar rápidamente qué áreas tienen mayor peso en el total de egresados. Desde una perspectiva de Ciencia de Datos, la ojiva ayuda a detectar posibles desequilibrios en la distribución y podría servir como base para futuros análisis más profundos o recomendaciones educativas.
+
+### Conclusión
+
+Podemos observar que la variabilidad no solo depende del área, sino también del año y del tipo de institución. Este tipo de patrones pueden ser claves para entender cómo se comporta el sistema educativo y qué áreas requieren más atención o inversión. Como estudiante de Ciencia de Datos, es interesante pensar cómo estos datos podrían ayudar a construir modelos predictivos o a guiar futuras decisiones en política educativa.
 
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+```
 
+## 📊 Datos de egresados
+
+```{r}
+egresados <- data.frame(
+  Año = c(2020, 2021, 2023),
+  Total = c(139182, 142826, 139182)
+)
+
+egresados
+```
+
+## 📈 Cálculo de cambios entre años
+
+```{r}
+egresados$Cambio_Absoluto <- c(NA, diff(egresados$Total))
+egresados$Cambio_Porcentaje <- c(NA, round((diff(egresados$Total) / head(egresados$Total, -1)) * 100, 2))
+
+egresados
+```
+
+## 📊 Gráfico comparativo de egresados
+
+```{r}
+ggplot(egresados, aes(x = factor(Año), y = Total, fill = factor(Año))) +
+  geom_bar(stat = "identity", width = 0.6) +
+  labs(title = "Comparación del total de egresados por año",
+       x = "Año",
+       y = "Total de egresados") +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  geom_text(aes(label = Total), vjust = -0.5)
+```
+
+## 🧾 Interpretación
+
+```{r results='asis', echo=FALSE}
+cat("### Análisis del cambio en el número total de egresados\n\n")
+
+cat(paste0("Entre 2020 y 2021, el total de egresados pasó de ", egresados$Total[1],
+           " a ", egresados$Total[2],
+           ", lo que representa un aumento de ", egresados$Cambio_Absoluto[2],
+           " egresados (", egresados$Cambio_Porcentaje[2], "%).\n\n"))
+
+cat(paste0("Entre 2021 y 2023, el total de egresados pasó de ", egresados$Total[2],
+           " a ", egresados$Total[3],
+           ", lo que representa una disminución de ", abs(egresados$Cambio_Absoluto[3]),
+           " egresados (", egresados$Cambio_Porcentaje[3], "%).\n\n"))
+
+cat("En resumen, el gráfico de barras nos permite visualizar claramente que el año 2021 fue el de mayor cantidad de egresados, mientras que en 2020 y 2023 el número total fue exactamente el mismo. Esta oscilación puede reflejar variaciones en cohortes, políticas educativas o condiciones externas como la pandemia.\n")
+```
+
+## Cómo afecta a la cantidad de graduados el nivel academico de sus padres ?
+
+
+``` {r madres_/graduados, message=FALSE, warning=FALSE}
+#llamamos a las librarias que podemos llegar a utilizar
+library(readxl)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+
+
+# nivel academico de la madre del graduado
+nivel_madre <- read_excel("2.1 Pregrado y Grado Gestión Estatal 2023.xlsx", sheet = "C.2.1.32", skip=4 )
+
+#reorganizamos y filtramos el dataset
+colnames(nivel_madre)[1] <- "Institucion"
+nivel_madre_limpio <- nivel_madre %>%
+  
+  filter(Institucion == "Total Universidades Nacionales") %>%
+  pivot_longer(
+    cols = -Institucion,
+    names_to = "Nivel_academico",
+    values_to = "Cantidad") %>%
+  
+  mutate(
+    Cantidad = as.numeric(Cantidad),
+    Nivel_academico_sesgo = trimws(tolower(Nivel_academico)),
+    Padre_Madre = "Madre") %>%
+  
+#limpiamos las columnas que no nos interesan
+  filter(!Nivel_academico_sesgo %in% c("total", "no sabe", "ndi"))
+```
+
+``` {r padres_/graduados, message=FALSE, warning=FALSE}
+
+library(readxl)
+library(dplyr)
+library(tidyr)
+
+# nivel academico del Padre del graduado
+
+#primer paso leemos el dataset y llamamos nuestra hoja correspondiente.
+nivel_padre <- read_excel("2.1 Pregrado y Grado Gestión Estatal 2023.xlsx", sheet = "C.2.1.33", skip=4 )
+colnames(nivel_padre)[1] <- "Institucion"
+nivel_padre_limpio <- nivel_padre %>%
+  filter(Institucion == "Total Universidades Nacionales") %>%
+  pivot_longer(
+    cols = -Institucion,
+    names_to = "Nivel_academico",
+    values_to = "Cantidad"
+  ) %>%
+  mutate(
+    Cantidad = as.numeric(Cantidad),
+    Nivel_academico_sesgo = trimws(tolower(Nivel_academico)),
+    Padre_Madre = "Padre") %>%
+  filter(!Nivel_academico_sesgo %in% c("total", "no sabe", "ndi"))
+```
+
+# 📊 Unimos los dos codigos para luego graficar la comparacion ver juntos ambos resultados
+
+``` {r comparación, message=FALSE, warning=FALSE}
+library(readxl)
+library(dplyr)
+library(tidyr)
+
+#asignamos la comparación
+
+comparativo <- bind_rows(nivel_madre_limpio, nivel_padre_limpio)
+
+# Gráficamos 
+ggplot(comparativo, aes(x = reorder(Nivel_academico, -Cantidad), y = Cantidad, fill = Padre_Madre)) +
+  geom_col(position = "dodge") +
+  geom_text(aes(label = Cantidad), position = position_dodge(width = 0.9), vjust = -0.3, size = 3) + 
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(
+    title = "Nivel academico del padre y la madre del graduado - Universidades Nacionales (2023)",
+    x = "Nivel academico",
+    y = "Cantidad de egresados",
+    fill = "padre y madre"
+  )
+```
+
+
+# Como podemos observar en el grafico de barras el nivel de acedemico de los padres es crucial en la cantidad de graduados!
 
 
