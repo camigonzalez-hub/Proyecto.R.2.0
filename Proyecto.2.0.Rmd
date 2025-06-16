@@ -19,40 +19,40 @@ Estas fuentes permiten analizar los factores que influyen en la *tasa de egreso 
 
 #### La *problemática* que hemos elegido para el presente trabajo se basa en los factores que hacen que haya menor o mayor tasa de egresados en las universidades de Buenos Aires. En base a esta problemática y a partir de los data sets seleccionados y a su respectivo análisis, hemos elegido los siguientes factores a analizar:
 
--   Cuál es la diferencia en cantidad de graduados en instituciones públicas o privadas (tanto a nivel general y en carreras específicas).
+-   Cuál es la diferencia en cantidad de graduados en instituciones públicas o privadas.
 
 -   Cómo varía la cantidad de egresados s/ área disciplinar (Área de ingeniería tiene más egresados que en otras áreas). (Gráfico de torta o barras: eje x: área disciplinar, eje y: cantidad de egresados)
 
--   Carreras que tienen menor/mayor cantidad de egresados. (Abogacía, contador público, enfermería).
+-   Carreras que tienen mmayor cantidad de egresados.
 
--   Carreras con mayor y menor retención estudiantil (Con mayor egresados/retención son abogacía, contador público y enfermería; con menor retención (más cantidad de ingresantes pero menor cantidad de egresados).
+-  **Carreras con mayor y menor retención estudiantil (Con mayor egresados/retención son abogacía, contador público y enfermería; con menor retención (más cantidad de ingresantes pero menor cantidad de egresados).**
 
--   Cómo varía la cantidad de graduados según su edad y género. **CAMI G, SOLO GENERO **
+-   Cómo varía la cantidad de graduados según su género.
 
--   Cómo varía la cantidad de egresados empleados, dependiendo de la cantidad de ingresantes con o sin empleo. 
+-   **Cómo varía la cantidad de egresados empleados, dependiendo de la cantidad de ingresantes con o sin empleo.** 
 
 ## Análisis exploratorio 
 
-- ¿Qué carreras tienen mayor cantidad de egresados? **CAMI G, SOLO MAYOR CANTIDAD**
+- ¿Qué carreras tienen mayor cantidad de egresados?
 
-- ¿Cómo varía la cantidad de egresados por área disciplinar? **CAMI R (CUADRO Y OJIVA)**
+- ¿Cómo varía la cantidad de egresados por área disciplinar? 
 
 - ¿Existen diferencias significativas en la cantidad de egresados
-entre instituciones estatales y privadas ? **CAMI G, DIF. ENTRE Q EN PRIV Y PUB, PERO NO SEGUN CARRERAR**
+entre instituciones estatales y privadas ? 
 
-- ¿Cómo varió la cantidad de egresados totales en 2020, 2021 y 2023? **Mauri**
+- ¿Cómo varió la cantidad de egresados totales en 2020, 2021 y 2023? 
 
-- ¿Cómo varió la cantidad de reinscriptos en Universidades Nacionales entre los años 2020, 2021 y 2023? Lu
+- ¿Cómo varió la cantidad de reinscriptos en Universidades Nacionales entre los años 2020, 2021 y 2023? 
 
-- ¿Hubo diferencias en la cantidad de egresados en Universidades Nacionales y Provinciales durante los años 2021 y 2023? Lu
+- ¿Hubo diferencias en la cantidad de egresados en Universidades Nacionales y Provinciales durante los años 2021 y 2023? 
 
-- ¿Qué año tiene mayor cantidad de reinscriptos? Lu
+- ¿Qué año tiene mayor cantidad de reinscriptos? 
 
-- ¿Qué género tiene mayor cantidad de graduados, son más hombres o mujeres? **CAMI G**
+- ¿Qué género tiene mayor cantidad de graduados, son más hombres o mujeres? 
 
-- ¿Cómo afecta en la cantidad de graduados el nivel de academico de los padres? **luca**
+- ¿Cómo afecta en la cantidad de graduados el nivel de academico de los padres?
 
-- ¿Qué diferencias existen en la cantidad de egresados entre modalidad virtual y presencial? **Cami G** 
+- ¿Qué diferencias existen en la cantidad de egresados entre modalidad virtual y presencial? 
 
 ## Justificación de la elección del dataset
 
