@@ -8,7 +8,7 @@ output:
     latex_engine: xelatex
 always_allow_html: true
 ---
-# INTRODUCCIóN
+# INTRODUCCIÓN
 
 
  Este trabajo utiliza datos del **Ministerio de Educación de la Nación Argentina**, extraídos de los Anuarios de Estadísticas Universitarias, y de una base complementaria proveniente de la **Encuesta sobre Condiciones de Ingreso a la Universidad (ECIU)**.
@@ -507,10 +507,6 @@ ggplot(egresados, aes(x = reorder(`Rama y disciplina`, Total), y = FrecuenciaAcu
 La ojiva permite visualizar cómo se acumula el total de egresados por área disciplinar. Al ordenar las disciplinas de menor a mayor según su cantidad de egresados, observamos que unas pocas áreas concentran una gran parte del total acumulado. Por ejemplo, Ciencias de la Salud: Medicina aporta un incremento considerable en la curva, mientras que disciplinas como Arquitectura y Diseño o Biología generan un aumento más gradual.
 
 Este tipo de representación es útil porque permite identificar rápidamente qué áreas tienen mayor peso en el total de egresados. Desde una perspectiva de Ciencia de Datos, la ojiva ayuda a detectar posibles desequilibrios en la distribución y podría servir como base para futuros análisis más profundos o recomendaciones educativas.
-
-### Conclusión
-
-Podemos observar que la variabilidad no solo depende del área, sino también del año y del tipo de institución. Este tipo de patrones pueden ser claves para entender cómo se comporta el sistema educativo y qué áreas requieren más atención o inversión. Como estudiante de Ciencia de Datos, es interesante pensar cómo estos datos podrían ayudar a construir modelos predictivos o a guiar futuras decisiones en política educativa.
 
 
 ```{r setup, include=FALSE}
